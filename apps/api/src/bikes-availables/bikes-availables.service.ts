@@ -1,6 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Injectable, Inject } from '@nestjs/common';
-import { CreateBikeAvailable ,UpdateBikeAvailable} from './dto/bikes-available.dto';
+import {
+  CreateBikeAvailable,
+  UpdateBikeAvailable,
+} from './dto/bikes-available.dto';
 import { bikesAvailablesInterface } from './interfaces/bikes-available.interfaces';
 import { BikesAvailablesEntity } from '../schemas/enties/bikes-avibles.entity';
 
@@ -34,10 +37,8 @@ export class BikesAvailablesService {
     for (const key in body) {
       prob[key] = body[key];
     }
-    return  await this.tableBikesAvailable.update(prob ,{
+    return await this.tableBikesAvailable.update(prob, {
       where: { id },
-    }); 
-
-
+    });
   }
 }

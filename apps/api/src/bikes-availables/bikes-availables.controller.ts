@@ -49,7 +49,10 @@ export class BikesAvailablesController {
 
   @Patch('/modifiedOne/:id')
   async modifiedOneItem(@Res() res, @Body() body, @Param('id') id: string) {
-    const modifiedOneItem = await this.bikesAvailablesService.modifiedOne(id , body);
+    const modifiedOneItem = await this.bikesAvailablesService.modifiedOne(
+      id,
+      body,
+    );
     return res.status(HttpStatus.OK).json({
       message: 'update',
       modifiedOneItem,
