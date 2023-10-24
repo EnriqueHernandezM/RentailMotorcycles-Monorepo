@@ -8,6 +8,7 @@ import {
   Body,
   Delete,
   Patch,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { BikesAvailablesService } from './bikes-availables.service';
 import { CreateBikeAvailable } from './dto/bikes-available.dto';
@@ -19,7 +20,7 @@ export class BikesAvailablesController {
   async allItems(@Res() res) {
     const all = await this.bikesAvailablesService.findAll();
     return res.status(HttpStatus.OK).json({
-      items: all,
+      all,
     });
   }
 
@@ -38,7 +39,7 @@ export class BikesAvailablesController {
   }
 
   @Delete('/deleteOne/:id')
-  async deleteOneItem(@Res() res, @Param('id') id: string) {
+  async deleteOneItem(@Res() res, @Param('id', ParseIntPipe) id: number) {
     const deleteOneItem = await this.bikesAvailablesService.deleteOne(id);
     return res.status(HttpStatus.OK).json({
       message: 'deleted',
@@ -48,7 +49,11 @@ export class BikesAvailablesController {
   }
 
   @Patch('/modifiedOne/:id')
-  async modifiedOneItem(@Res() res, @Body() body, @Param('id') id: string) {
+  async modifiedOneItem(
+    @Res() res,
+    @Body() body,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
     const modifiedOneItem = await this.bikesAvailablesService.modifiedOne(
       id,
       body,
