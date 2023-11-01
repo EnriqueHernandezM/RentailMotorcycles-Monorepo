@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { BikesAvailablesModule } from './bikes-availables/bikes-availables.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { ConfigModule } from '@nestjs/config';
-import configuration from './config/configuration';
+import configuration from './config/env.config';
 import { join } from 'path';
 
 @Module({
@@ -18,7 +16,5 @@ import { join } from 'path';
       rootPath: join(__dirname, '../../', 'client,dist'),
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

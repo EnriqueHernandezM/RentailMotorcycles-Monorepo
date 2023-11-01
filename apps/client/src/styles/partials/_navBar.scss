@@ -1,0 +1,82 @@
+#navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+  width: 100%;
+  ul {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+    li {
+      a {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+      }
+    }
+  }
+  #containerSwitchLigth {
+    position: relative;
+    display: flex;
+    padding: 0px 30px 0px 0px;
+    height: 28px;
+    align-items: center;
+    cursor: pointer;
+    #switchTypeLigth {
+      display: none;
+    }
+    .rail {
+      width: 52px;
+      height: 28px;
+      border: 1px solid yellow;
+      position: relative;
+      border-radius: 5px;
+      background-color: black;
+      .circle {
+        left: 0px;
+        display: block;
+        border-radius: 50%;
+        position: absolute;
+        top: 22%;
+        transition: 0.4s;
+        transform: translateY(-50%);
+      }
+      .circle::before {
+        content: "🌖";
+        position: absolute;
+        left: -4px;
+        top: -10px;
+        font-size: 24px;
+      }
+
+      .circle::after {
+        content: "☀️";
+        position: absolute;
+        right: -28px;
+        top: -10px;
+        display: none;
+        font-size: 24px;
+      }
+    }
+    #switchTypeLigth:checked ~ .rail .circle::before {
+      display: none;
+    }
+    #switchTypeLigth:checked ~ .rail .circle::after {
+      display: block;
+    }
+
+    #switchTypeLigth:checked ~ .indicator {
+      background-color: green;
+    }
+    #switchTypeLigth:checked ~ .rail .circle {
+      transform: translate(27px, -54%);
+    }
+    #switchTypeLigth:checked ~ .rail {
+      background-color: rgb(4, 119, 151);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.containerImagesMain {
+  background-color: $secondaryColor;
+  @include mobileHorizontalAndTabletVertical {
+  }
+  .hondaCbr {
+    width: 80%;
+    @include mobileHorizontalAndTabletVertical {
+      width: 50%;
+    }
+  }
+}

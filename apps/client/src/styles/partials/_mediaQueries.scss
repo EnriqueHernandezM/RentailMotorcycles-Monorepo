@@ -1,0 +1,11 @@
+@mixin mobileHorizontalAndTabletVertical {
+  @media (min-width: 778px) {
+    @content;
+  }
+}
+
+@mixin tabletHorixzontalAndDesk {
+  @media (min-width: 1024) {
+    @content;
+  }
+}
