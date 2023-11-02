@@ -6,13 +6,32 @@
   padding: 1%;
   width: 100%;
   ul {
-    width: 70%;
+    width: 75%;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-around;
+    align-items: center;
     list-style: none;
     li {
+      padding: 6px;
+      .logoNavBar {
+        font-size: 1.4rem;
+        @include mobileHorizontalAndTabletVertical {
+          font-size: 2rem;
+        }
+      }
+      #logoNavBarImg {
+        position: absolute;
+        width: 35px;
+        top: 15px;
+        left: 99px;
+        @include mobileHorizontalAndTabletVertical {
+          width: 4px;
+          position: initial;
+          padding-left: 7px;
+        }
+      }
       a {
         color: rgb(0, 0, 0);
         text-decoration: none;
@@ -22,7 +41,7 @@
   #containerSwitchLigth {
     position: relative;
     display: flex;
-    padding: 0px 30px 0px 0px;
+    padding: 20px 5px 20px 0px;
     height: 28px;
     align-items: center;
     cursor: pointer;
@@ -31,11 +50,14 @@
     }
     .rail {
       width: 52px;
-      height: 28px;
-      border: 1px solid yellow;
+      height: 25px;
       position: relative;
-      border-radius: 5px;
+      border-radius: 23px;
       background-color: black;
+      @include mobileHorizontalAndTabletVertical {
+        width: 72px;
+        height: 34px;
+      }
       .circle {
         left: 0px;
         display: block;
@@ -51,6 +73,11 @@
         left: -4px;
         top: -10px;
         font-size: 24px;
+        @include mobileHorizontalAndTabletVertical {
+          font-size: 32px;
+          left: -4px;
+          top: -14px;
+        }
       }
 
       .circle::after {
@@ -60,6 +87,11 @@
         top: -10px;
         display: none;
         font-size: 24px;
+        @include mobileHorizontalAndTabletVertical {
+          font-size: 32px;
+          left: 6px;
+          top: -14px;
+        }
       }
     }
     #switchTypeLigth:checked ~ .rail .circle::before {

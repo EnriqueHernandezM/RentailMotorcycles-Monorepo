@@ -8,8 +8,13 @@ import {
   MaxLength,
   Max,
   Min,
+  IsFQDN,
+  Contains,
 } from 'class-validator';
-
+import { send } from 'process';
+import { endWith } from 'rxjs';
+import { or } from 'sequelize';
+import { OpttionsExtImg } from 'src/schemas/enties/bikes-avibles.entity';
 import { OptionsStatus } from 'src/schemas/enties/bikes-avibles.entity';
 
 export class CreateBikeAvailable {
@@ -50,6 +55,10 @@ export class CreateBikeAvailable {
   @Min(5)
   @Max(999)
   readonly weigth: number;
+  @IsString()
+  @IsNotEmpty()
+  @IsIn([OpttionsExtImg.jpg, OpttionsExtImg.png])
+  readonly image: string;
   @IsString()
   @IsNotEmpty()
   @IsIn([OptionsStatus.available, OptionsStatus.onRoute])

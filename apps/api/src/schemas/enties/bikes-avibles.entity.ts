@@ -6,6 +6,10 @@ export enum OptionsStatus {
   onRoute = 'On route',
 }
 
+export enum OpttionsExtImg {
+  jpg = '.jpg',
+  png = '.png',
+}
 @Table
 export class BikesAvailablesEntity extends Model<BikesAvailablesEntity> {
   @Column({
@@ -44,7 +48,11 @@ export class BikesAvailablesEntity extends Model<BikesAvailablesEntity> {
     allowNull: false,
   })
   weigth: number;
-
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  image: string;
   @Column({
     type: DataType.STRING,
     allowNull: false,

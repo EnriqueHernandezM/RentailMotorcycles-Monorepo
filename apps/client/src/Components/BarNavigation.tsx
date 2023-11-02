@@ -1,28 +1,31 @@
 import React, { useState } from "react";
-
-export default function BarNavigation() {
-  const [typeLigth, setTypeLigth] = useState(false);
-
-  const changeStateOfSwichTypeLigth = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    setTypeLigth(e.target.checked);
-  };
-
+import logoNav from "../images/logoNavBar.png";
+export default function BarNavigation(
+  { typeLigth }: { typeLigth: boolean },
+  {
+    changeStateOfSwichTypeLigth,
+  }: {
+    changeStateOfSwichTypeLigth: (
+      e: React.ChangeEvent<HTMLInputElement>
+    ) => void;
+  }
+) {
+  /* stateNigthMode: boolean,
+  changeStateOfSwichTypeLigth: void */
   return (
     <nav id="navBar">
       <ul>
         <li>
-          <a href="">Hola Logo</a>
+          <a className="logoNavBar" href="">
+            Rentail Motorcycles
+          </a>
+          <img id="logoNavBarImg" src={logoNav} alt="Logo Motorcycle" />
         </li>
         <li>
-          <a href="">Hola 1</a>
+          <a href="">{`${typeLigth}`}</a>
         </li>
         <li>
           <a href="">Hola 2</a>
-        </li>
-        <li>
-          <a href="">Hola 3</a>
         </li>
       </ul>{" "}
       <label id="containerSwitchLigth">
