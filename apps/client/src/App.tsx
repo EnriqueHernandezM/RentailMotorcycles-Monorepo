@@ -1,24 +1,15 @@
-import { useState } from "react";
+import React, { useState, createContext } from "react";
 import BarNavigation from "./Components/BarNavigation";
 import MainHomePage from "./Components/MainHomePage";
-
-function App(): JSX.Element {
-  const [typeLigth, setTypeLigth] = useState<boolean>(false);
-
-  const changeStateOfSwichTypeLigth = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    setTypeLigth(e.target.checked);
-  };
-
+import { ContextsConatain } from "./functions/themeFunctions";
+function App() {
   return (
-    <div className="App">
-      <BarNavigation
-        typeLigth={typeLigth}
-        changeStateOfSwichTypeLigth={changeStateOfSwichTypeLigth}
-      />
-      <MainHomePage />
-    </div>
+    <ContextsConatain>
+      <div>
+        <BarNavigation />
+        <MainHomePage />
+      </div>
+    </ContextsConatain>
   );
 }
 

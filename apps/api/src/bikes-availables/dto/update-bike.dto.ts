@@ -5,13 +5,13 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  IsUrl,
   Max,
   MaxLength,
   Min,
   MinLength,
 } from 'class-validator';
 import { OptionsStatus } from 'src/schemas/enties/bikes-avibles.entity';
-import { OpttionsExtImg } from 'src/schemas/enties/bikes-avibles.entity';
 export class UpdateBikeAvailable {
   @IsString()
   @IsOptional()
@@ -50,9 +50,9 @@ export class UpdateBikeAvailable {
   @Min(5)
   @Max(999)
   weigth?: number;
-  @IsString()
-  @IsNotEmpty()
-  @IsIn([OpttionsExtImg.jpg, OpttionsExtImg.png])
+
+  @IsOptional()
+  @IsUrl()
   image?: string;
   @IsString()
   @IsNotEmpty()

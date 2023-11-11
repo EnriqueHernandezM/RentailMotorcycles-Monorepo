@@ -37,9 +37,7 @@ export class BikesAvailablesController {
   async allItems(@Res() res) {
     try {
       const inventary = await this.bikesAvailablesService.findAll();
-      return res.status(HttpStatus.OK).json({
-        inventary,
-      });
+      return res.status(HttpStatus.OK).json({ inventary });
     } catch (error) {
       throw error;
     }

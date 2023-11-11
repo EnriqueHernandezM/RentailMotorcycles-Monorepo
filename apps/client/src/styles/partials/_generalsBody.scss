@@ -1,4 +1,9 @@
 body {
-  background-color: $principalColor;
   font-family: $generalFont;
+}
+.app {
+  background-color: $principalColor;
+}
+.appNigth {
+  background-color: $principalColorNigthMod;
 }

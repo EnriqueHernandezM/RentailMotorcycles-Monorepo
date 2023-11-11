@@ -1,37 +1,29 @@
-import React, { useState } from "react";
 import logoNav from "../images/logoNavBar.png";
-export default function BarNavigation(
-  { typeLigth }: { typeLigth: boolean },
-  {
-    changeStateOfSwichTypeLigth,
-  }: {
-    changeStateOfSwichTypeLigth: (
-      e: React.ChangeEvent<HTMLInputElement>
-    ) => void;
-  }
-) {
-  /* stateNigthMode: boolean,
-  changeStateOfSwichTypeLigth: void */
+import { useChangeTheme, useThemeValue } from "../functions/themeFunctions";
+
+export default function BarNavigation() {
+  const typeLigth = useThemeValue();
+  const changeTheme = useChangeTheme();
   return (
-    <nav id="navBar">
+    <nav id={typeLigth === false ? "navBar" : "navBarNigth"}>
       <ul>
         <li>
-          <a className="logoNavBar" href="">
+          <a className="logoNavBar" href="###">
             Rentail Motorcycles
           </a>
           <img id="logoNavBarImg" src={logoNav} alt="Logo Motorcycle" />
         </li>
         <li>
-          <a href="">{`${typeLigth}`}</a>
+          <a href="##"> Hola 1</a>
         </li>
         <li>
-          <a href="">Hola 2</a>
+          <a href="##">Hola 2</a>
         </li>
       </ul>{" "}
       <label id="containerSwitchLigth">
         <input
           type="checkbox"
-          onChange={(e) => changeStateOfSwichTypeLigth(e)}
+          onChange={(e) => changeTheme(e)}
           name="siwchTypeLigth"
           id="switchTypeLigth"
         />
@@ -39,6 +31,7 @@ export default function BarNavigation(
           <span className="circle"> </span>
         </div>
       </label>
+      <p id="ttt"> {`${typeLigth}`}</p>
     </nav>
   );
 }

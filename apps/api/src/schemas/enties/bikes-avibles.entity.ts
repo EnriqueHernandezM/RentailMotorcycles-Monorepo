@@ -5,11 +5,6 @@ export enum OptionsStatus {
   available = 'Available',
   onRoute = 'On route',
 }
-
-export enum OpttionsExtImg {
-  jpg = '.jpg',
-  png = '.png',
-}
 @Table
 export class BikesAvailablesEntity extends Model<BikesAvailablesEntity> {
   @Column({
