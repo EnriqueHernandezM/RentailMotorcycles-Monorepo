@@ -1,3 +1,5 @@
+import { useThemeValue } from "../functions/ThemeContext";
+
 interface ObjectBick {
   brand: string;
   model: string;
@@ -11,16 +13,19 @@ interface ObjectBick {
   id: number;
 }
 export default function CardItem(props: ObjectBick) {
+  const typeLigth: boolean = useThemeValue();
   return (
-    <div id="cardForItem">
+    <div id={typeLigth === false ? "cardForItem" : "cardForItemNigth"}>
       <img className="photoCard" src={props.image} alt=" image Bike" />
       <h2>{props.brand}</h2>
       <h3>{props.model}</h3>
       <span className="ccTag"> cc {props.cc}</span>
       <span className="ocupantsTag">👥{props.occupants}</span>
-      <span className="autonomyTag">full tank autonomy{props.autonomy} km</span>
-      <span className="speedTag">top speed {props.speed}</span>
-      <span className="weigthTag">weigth {props.weigth}</span>
+      <span className="autonomyTag">
+        full tank autonomy {props.autonomy} km
+      </span>
+      <span className="speedTag">top speed {props.speed}k/h</span>
+      <span className="weigthTag">weigth {props.weigth}kg</span>
       <span className="statatusTag">availability {props.status}</span>
     </div>
   );

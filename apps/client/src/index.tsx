@@ -3,13 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./styles/styles.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { RoutsContext } from "./functions/RoutsContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <RoutsContext>
+      <App />
+    </RoutsContext>
   </React.StrictMode>
 );
 

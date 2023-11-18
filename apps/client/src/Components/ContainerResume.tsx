@@ -1,14 +1,24 @@
-import React from "react";
+import { useThemeValue } from "../functions/ThemeContext";
 
 export default function ContainerResume() {
+  const typeLigthValue: boolean = useThemeValue();
   return (
     <div id="containerResume">
       <div id="colorOneContainerResume"></div>
-      <div id="containerTextResume">
-        <h2> Siente el fuego bebe </h2>
-        <p>kjnkjklkjkljk</p>
+      <div
+        id={
+          typeLigthValue === false
+            ? "containerTextResume"
+            : "containerTextResumeNigth"
+        }
+      >
+        <h2> Are you ready </h2>
+        <p>
+          If yo want proof a motorcy incredible or need to work and trasnspoting{" "}
+          <br />
+          count on us{" "}
+        </p>
       </div>
-      <h2> Siente el fuego bebe </h2>
       <div id="colorTwoContainerResume"></div>
     </div>
   );

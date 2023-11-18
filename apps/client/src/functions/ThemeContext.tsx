@@ -10,7 +10,7 @@ export const useChangeTheme = () => {
   return useContext(ContextFunctionChangeTheme);
 };
 
-export function ContextsConatain(props: { children: React.ReactNode }) {
+export function ContextsThemeConatain(props: { children: React.ReactNode }) {
   const [typeLigth, setTypeLigth] = useState<boolean>(false);
   const changeStateOfSwichTypeLigth = (
     e: React.ChangeEvent<HTMLInputElement>

@@ -13,7 +13,6 @@
     overflow-x: hidden;
   }
   #cardForItem {
-    // border: 1px solid red;
     cursor: pointer;
     scroll-snap-align: center;
     display: flex;
@@ -63,10 +62,13 @@
       width: 100%;
     }
     .speedTag {
+      width: 50%;
     }
     .weigthTag {
+      width: 50%;
     }
     .statusTag {
+      width: 100%;
     }
   }
   #containerAllItemsBefore {

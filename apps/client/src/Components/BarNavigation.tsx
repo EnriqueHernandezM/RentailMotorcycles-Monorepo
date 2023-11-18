@@ -1,9 +1,10 @@
 import logoNav from "../images/logoNavBar.png";
-import { useChangeTheme, useThemeValue } from "../functions/themeFunctions";
-
+import { useChangeTheme, useThemeValue } from "../functions/ThemeContext";
+import { useChangeRout } from "../functions/RoutsContext";
 export default function BarNavigation() {
   const typeLigth = useThemeValue();
   const changeTheme = useChangeTheme();
+  const changeRout = useChangeRout();
   return (
     <nav id={typeLigth === false ? "navBar" : "navBarNigth"}>
       <ul>
@@ -13,8 +14,8 @@ export default function BarNavigation() {
           </a>
           <img id="logoNavBarImg" src={logoNav} alt="Logo Motorcycle" />
         </li>
-        <li>
-          <a href="##"> Hola 1</a>
+        <li onClick={() => changeRout()}>
+          <a href="##"> Hola </a>
         </li>
         <li>
           <a href="##">Hola 2</a>
@@ -31,7 +32,6 @@ export default function BarNavigation() {
           <span className="circle"> </span>
         </div>
       </label>
-      <p id="ttt"> {`${typeLigth}`}</p>
     </nav>
   );
 }

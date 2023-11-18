@@ -2,17 +2,22 @@ import hondaCbr from "../images/hondaCbr600rr.png";
 import yamahaTenere from "../images/yamahaTenere.png";
 import ContainerResume from "./ContainerResume";
 import { getAllsItemsApi, addMotorcycleInventoryApi } from "../api/bikesApi";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import CardItem from "./CardItem";
+
 export default function MainHomePage() {
+  const [isPending, startTransition] = useTransition();
+
   const [allInventory, setAllInventory] = useState([]);
-  const [num, setNum] = useState(0);
-  const [width, setWidth] = useState(window.innerWidth);
+  const [numPositionItem, setNumPositionItem] = useState(0);
+  const [widthWindow, setWidthWindow] = useState(window.innerWidth);
 
   useEffect(() => {
     getAllsItemsApi()
       .then((inventory) => {
-        setAllInventory(inventory);
+        startTransition(() => {
+          setAllInventory(inventory);
+        });
       })
       .catch((err) => console.log(err));
   }, []);
@@ -20,7 +25,7 @@ export default function MainHomePage() {
   const carouselImages = (isLeft: boolean, isRigth: boolean) => {
     const limitImages = allInventory.length;
     if (isLeft === true && isRigth === false) {
-      setNum((prev) => {
+      setNumPositionItem((prev) => {
         if (prev === 0) {
           return prev;
         } else {
@@ -28,7 +33,7 @@ export default function MainHomePage() {
         }
       });
     } else if (isLeft === false && isRigth === true) {
-      setNum((prev) => {
+      setNumPositionItem((prev) => {
         if (prev === limitImages - 1) {
           return prev;
         }
@@ -48,7 +53,7 @@ export default function MainHomePage() {
         <img className="yamahaTenere" src={yamahaTenere} alt="yamaha tenere" />
       </div>
       <div id="containerAllItems">
-        {width > 1024 && (
+        {widthWindow > 1024 && (
           <span
             onMouseOver={() => {
               carouselImages(true, false);
@@ -56,14 +61,16 @@ export default function MainHomePage() {
             id="containerAllItemsBefore"
           ></span>
         )}
-        {width > 1024 && (
-          <div className="prob"> {createCardsItems[num - 1]}</div>
+        {widthWindow > 1024 && (
+          <div className="prob"> {createCardsItems[numPositionItem - 1]}</div>
         )}
-        {width > 1024 ? createCardsItems[num] : createCardsItems}
-        {width > 1024 && (
-          <div className="prob2"> {createCardsItems[num + 1]}</div>
+        {widthWindow > 1024
+          ? createCardsItems[numPositionItem]
+          : createCardsItems}
+        {widthWindow > 1024 && (
+          <div className="prob2"> {createCardsItems[numPositionItem + 1]}</div>
         )}
-        {width > 1024 && (
+        {widthWindow > 1024 && (
           <span
             onMouseOver={() => {
               carouselImages(false, true);
