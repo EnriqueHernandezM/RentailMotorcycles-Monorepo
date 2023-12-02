@@ -52,33 +52,45 @@ export default function MainHomePage() {
         <img className="hondaCbr" src={hondaCbr} alt="honda cbr 600" />
         <img className="yamahaTenere" src={yamahaTenere} alt="yamaha tenere" />
       </div>
-      <div id="containerAllItems">
-        {widthWindow > 1024 && (
-          <span
-            onMouseOver={() => {
-              carouselImages(true, false);
-            }}
-            id="containerAllItemsBefore"
-          ></span>
-        )}
-        {widthWindow > 1024 && (
-          <div className="prob"> {createCardsItems[numPositionItem - 1]}</div>
-        )}
-        {widthWindow > 1024
-          ? createCardsItems[numPositionItem]
-          : createCardsItems}
-        {widthWindow > 1024 && (
-          <div className="prob2"> {createCardsItems[numPositionItem + 1]}</div>
-        )}
-        {widthWindow > 1024 && (
-          <span
-            onMouseOver={() => {
-              carouselImages(false, true);
-            }}
-            id="containerAllItemsAfter"
-          ></span>
-        )}
-      </div>
+      {createCardsItems.length === 0 ? (
+        <div id="contentMsgeNotAvailable">
+          <h5 className="msgeNotAvailables">
+            oh oh Apparentlythere are no motorcycles available
+          </h5>
+        </div>
+      ) : (
+        <div id="containerAllItems">
+          {widthWindow > 1024 && (
+            <span
+              onMouseOver={() => {
+                carouselImages(true, false);
+              }}
+              id="containerAllItemsBefore"
+            ></span>
+          )}
+          {widthWindow > 1024 && (
+            <div className="prob"> {createCardsItems[numPositionItem - 1]}</div>
+          )}
+          {widthWindow > 1024
+            ? createCardsItems[numPositionItem]
+            : createCardsItems}
+          {widthWindow > 1024 && (
+            <div className="prob2">
+              {" "}
+              {createCardsItems[numPositionItem + 1]}
+            </div>
+          )}
+          {widthWindow > 1024 && (
+            <span
+              onMouseOver={() => {
+                carouselImages(false, true);
+              }}
+              id="containerAllItemsAfter"
+            ></span>
+          )}
+        </div>
+      )}
+
       <ContainerResume />
     </main>
   );

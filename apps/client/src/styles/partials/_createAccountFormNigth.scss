@@ -1,0 +1,19 @@
+#formCreateAccountNigth {
+  @extend #formCreateAccount;
+  label {
+    .inputsText {
+      background-color: $principalColorNigthMod;
+      border-bottom: 1px solid $detailsColorNigthMode;
+      color: $principalFontColorNigth;
+    }
+    .inputCalendar[type="date"] {
+      background-color: rgb(4, 4, 4);
+      color: white;
+    }
+    .inputCalendar[type="date"]:focus {
+      background-color: $principalColorNigthMod;
+      border-color: #80bdff;
+      outline: 0;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+#formCreateAccount {
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  p {
+    font-size: $titlePagesFontSize;
+    color: $principalFontColorNigth;
+    padding: 4px 4px 10px 4px;
+  }
+  label {
+    color: $principalFontColorNigth;
+    width: 80%;
+    padding: 6px;
+    font-size: 1.2rem;
+    @include tabletHorixzontalAndDesk {
+      width: 35%;
+    }
+    .inputsText {
+      width: 100%;
+      color: $principalFontColor;
+      font-size: $secondaryFontSize - 0.3;
+      border: 0;
+      outline: none;
+      padding: 4px;
+      background-color: $principalColor;
+      border-bottom: 1px solid rgb(0, 0, 0);
+    }
+    .inputCalendar[type="date"] {
+      font-size: 1.22rem;
+      border: 0;
+      margin-top: 15px;
+      margin-left: 30%;
+      appearance: none;
+      width: 50%;
+      border-radius: 3px;
+      color: $detailsColor;
+      background-color: $principalColor;
+      display: inline-block;
+      visibility: visible;
+    }
+    .inputCalendar[type="date"]:focus {
+      background-color: $principalColor;
+      border-color: rgb(255, 6, 6);
+      outline: 0;
+    }
+    .inputCalendar[type="date"]::-webkit-calendar-picker-indicator {
+      display: none;
+    }
+  }
+}

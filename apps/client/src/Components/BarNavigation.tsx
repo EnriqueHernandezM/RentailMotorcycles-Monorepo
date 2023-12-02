@@ -2,19 +2,20 @@ import logoNav from "../images/logoNavBar.png";
 import { useChangeTheme, useThemeValue } from "../functions/ThemeContext";
 import { useChangeRout } from "../functions/RoutsContext";
 export default function BarNavigation() {
-  const typeLigth = useThemeValue();
+  let typeLigth = useThemeValue();
+
   const changeTheme = useChangeTheme();
   const changeRout = useChangeRout();
   return (
     <nav id={typeLigth === false ? "navBar" : "navBarNigth"}>
       <ul>
-        <li>
-          <a className="logoNavBar" href="###">
+        <li onClick={() => changeRout("/")}>
+          <a className="logoNavBar" href="#">
             Rentail Motorcycles
           </a>
           <img id="logoNavBarImg" src={logoNav} alt="Logo Motorcycle" />
         </li>
-        <li onClick={() => changeRout()}>
+        <li onClick={() => changeRout("/form")}>
           <a href="##"> Hola </a>
         </li>
         <li>

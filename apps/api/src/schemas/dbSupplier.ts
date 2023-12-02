@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Sequelize } from 'sequelize-typescript';
 import { BikesAvailablesEntity } from './enties/bikes-avibles.entity';
 import { ConfigService } from '@nestjs/config';

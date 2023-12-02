@@ -1,6 +1,12 @@
 import React, { useState, createContext, useContext } from "react";
 
-const ContextValueTabRout = createContext<boolean>(false);
+export const availableRoutes = {
+  home: "/",
+  formCreateAccount: "createNewUser",
+  formAdmin: "formAdmin",
+};
+
+const ContextValueTabRout = createContext<string>("/");
 const ContextChangeValueRout = createContext<Function>(Function);
 
 export const useRoutCurrent = () => {
@@ -11,17 +17,14 @@ export const useChangeRout = () => {
 };
 
 export function RoutsContext(props: { children: React.ReactNode }) {
-  const [tabRout, setTabRout] = useState<boolean>(false);
+  const [tabRout, setTabRout] = useState<string>(availableRoutes.home);
 
-  const changeRout = () => {
-    setTabRout((prev) => {
-      console.log(prev);
-      return !prev;
-      /*  if (prev === rout) {
+  const changeRout = (routCatch: string) => {
+    const availableRouts = setTabRout((prev) => {
+      if (prev === routCatch) {
         return prev;
-      } else {
-        return rout;
-      } */
+      }
+      return routCatch;
     });
   };
 

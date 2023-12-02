@@ -1,10 +1,10 @@
-/* eslint-disable prettier/prettier */
 import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
 export enum OptionsStatus {
   available = 'Available',
   onRoute = 'On route',
 }
+
 @Table
 export class BikesAvailablesEntity extends Model<BikesAvailablesEntity> {
   @Column({
@@ -43,11 +43,13 @@ export class BikesAvailablesEntity extends Model<BikesAvailablesEntity> {
     allowNull: false,
   })
   weigth: number;
+
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
   image: string;
+
   @Column({
     type: DataType.STRING,
     allowNull: false,

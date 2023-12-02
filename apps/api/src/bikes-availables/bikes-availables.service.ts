@@ -8,6 +8,7 @@ import {
   CreateBikeAvailable,
   UpdateBikeAvailable,
 } from './dto/bikes-available.dto';
+
 import { BikesAvailablesEntity } from '../schemas/enties/bikes-avibles.entity';
 
 @Injectable()

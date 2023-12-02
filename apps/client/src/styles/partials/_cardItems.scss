@@ -102,3 +102,11 @@
   width: 100%;
   left: 90%;
 }
+#contentMsgeNotAvailable {
+  width: 100%;
+  padding: 5%;
+  .msgeNotAvailables {
+    text-align: center;
+    color: $secondaryFontColorNigth;
+  }
+}
