@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useThemeValue } from "../functions/ThemeContext";
+import { userCreateAccount } from "../api/usersAuthApi";
 
 interface InputsCreateAccount {
-  nameNewUser: string;
-  emailNewUser: string;
-  lastNameNewUser: string;
-  birthDateNewUser: string;
-  cityNewUser: string;
+  name: string;
+  lastName: string;
+  email: string;
+  password: string;
+  birthDate: string;
+  city: string;
   motorcycleAsigned: boolean;
-  idMotorcycleAsigned: string;
+  idMotorcycleAsigned: number;
 }
 
 export default function CreateCountForm() {
@@ -16,13 +18,14 @@ export default function CreateCountForm() {
 
   const [valuesFormCreateAccount, setValuesFormCreateAccount] =
     useState<InputsCreateAccount>({
-      nameNewUser: "",
-      lastNameNewUser: "",
-      emailNewUser: "",
-      birthDateNewUser: "",
-      cityNewUser: "",
+      name: "",
+      lastName: "",
+      email: "",
+      password: "",
+      birthDate: "",
+      city: "",
       motorcycleAsigned: false,
-      idMotorcycleAsigned: "",
+      idMotorcycleAsigned: 0,
     });
 
   function changesFormCreateUser(e: React.ChangeEvent<HTMLInputElement>) {
@@ -34,13 +37,20 @@ export default function CreateCountForm() {
       };
     });
   }
-  function envFormCreateNewUser() {
-    ///visit api
-    console.log(valuesFormCreateAccount);
+  function envFormCreateNewUser(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    userCreateAccount(valuesFormCreateAccount)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err: any) => console.log(err));
   }
   return (
     <form
-      onSubmit={envFormCreateNewUser}
+      autoComplete="no"
+      onSubmit={(e) => {
+        envFormCreateNewUser(e);
+      }}
       id={
         typeLigthValue === false
           ? "formCreateAccount"
@@ -51,58 +61,76 @@ export default function CreateCountForm() {
       <label>
         Name
         <input
+          autoComplete="no"
           className="inputsText"
           type="text"
-          name="nameNewUser"
+          name="name"
           required={true}
           onChange={changesFormCreateUser}
-          value={valuesFormCreateAccount.nameNewUser}
+          value={valuesFormCreateAccount.name}
         />
       </label>
       <label>
         Last name
         <input
+          autoComplete="no"
           className="inputsText"
           type="text"
           name="lastName"
           required={true}
           onChange={changesFormCreateUser}
-          value={valuesFormCreateAccount.lastNameNewUser}
+          value={valuesFormCreateAccount.lastName}
         />
       </label>
       <label>
         Email
         <input
+          autoComplete="no"
           className="inputsText"
           type="email"
-          name="emailNewUser"
+          name="email"
           required={true}
           onChange={changesFormCreateUser}
-          value={valuesFormCreateAccount.emailNewUser}
+          value={valuesFormCreateAccount.email}
+        />
+      </label>
+      <label>
+        Password
+        <input
+          autoComplete="no"
+          className="inputsText"
+          type="password"
+          name="password"
+          required={true}
+          onChange={changesFormCreateUser}
+          value={valuesFormCreateAccount.password}
         />
       </label>
       <label>
         Birthdate
         <input
+          autoComplete="no"
           className="inputCalendar"
           type="date"
-          name="birthDateNewUser"
+          name="birthDate"
           required={true}
           onChange={changesFormCreateUser}
-          value={valuesFormCreateAccount.birthDateNewUser}
+          value={valuesFormCreateAccount.birthDate}
         />
       </label>
       <label>
         City
         <input
+          autoComplete="no"
           className="inputsText"
           type="text"
-          name="cityNewUser"
+          name="city"
           required={true}
           onChange={changesFormCreateUser}
-          value={valuesFormCreateAccount.cityNewUser}
+          value={valuesFormCreateAccount.city}
         />
       </label>
+      <button className="buttonForms"> Log in </button>
     </form>
   );
 }

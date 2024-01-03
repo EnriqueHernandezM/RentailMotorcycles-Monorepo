@@ -1,8 +1,8 @@
-import { BikesAvailablesEntity } from '../schemas/enties/bikes-avibles.entity';
+import { BikesAvailablesEntities } from '../schemas/enties/bikes-avibles.entity';
 
-export const bikesAvailablesEntityProviders = [
+export const bikesAvailablesEntitiesProviders = [
   {
     provide: 'tableBikesAvailables',
-    useValue: BikesAvailablesEntity,
+    useValue: BikesAvailablesEntities,
   },
 ];

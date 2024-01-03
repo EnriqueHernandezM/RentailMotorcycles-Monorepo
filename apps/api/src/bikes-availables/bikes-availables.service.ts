@@ -9,32 +9,32 @@ import {
   UpdateBikeAvailable,
 } from './dto/bikes-available.dto';
 
-import { BikesAvailablesEntity } from '../schemas/enties/bikes-avibles.entity';
+import { BikesAvailablesEntities } from '../schemas/enties/bikes-avibles.entity';
 
 @Injectable()
 export class BikesAvailablesService {
   constructor(
     @Inject('tableBikesAvailables')
-    private tableBikesAvailable: typeof BikesAvailablesEntity,
+    private tableBikesAvailable: typeof BikesAvailablesEntities,
   ) {}
 
   async create(
     createBikeAvailable: CreateBikeAvailable,
-  ): Promise<BikesAvailablesEntity> {
+  ): Promise<BikesAvailablesEntities> {
     try {
-      const PrettierCreateBike: CreateBikeAvailable =
+      const prettierCreateBike: CreateBikeAvailable =
         await this.changeFirstChart(createBikeAvailable);
-      return await this.tableBikesAvailable.create<BikesAvailablesEntity>(
-        PrettierCreateBike,
+      return await this.tableBikesAvailable.create<BikesAvailablesEntities>(
+        prettierCreateBike,
       );
     } catch (error) {
       throw new InternalServerErrorException(`${error}`);
     }
   }
 
-  async findAll(): Promise<BikesAvailablesEntity[]> {
+  async findAll(): Promise<BikesAvailablesEntities[]> {
     try {
-      return await this.tableBikesAvailable.findAll<BikesAvailablesEntity>();
+      return await this.tableBikesAvailable.findAll<BikesAvailablesEntities>();
     } catch (error) {
       throw new InternalServerErrorException(`${error}`);
     }

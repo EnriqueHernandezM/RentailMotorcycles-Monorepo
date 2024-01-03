@@ -1,3 +1,4 @@
+import { deleteMotorcycleInventoryApi } from "../api/bikesApi";
 import { useThemeValue } from "../functions/ThemeContext";
 
 interface ObjectBick {
@@ -14,6 +15,11 @@ interface ObjectBick {
 }
 export default function CardItem(props: ObjectBick) {
   const typeLigth: boolean = useThemeValue();
+  async function deleteMotorcycle(id: number) {
+    deleteMotorcycleInventoryApi(id)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }
   return (
     <div id={typeLigth === false ? "cardForItem" : "cardForItemNigth"}>
       <img className="photoCard" src={props.image} alt=" image Bike" />
@@ -27,6 +33,13 @@ export default function CardItem(props: ObjectBick) {
       <span className="speedTag">top speed {props.speed}k/h</span>
       <span className="weigthTag">weigth {props.weigth}kg</span>
       <span className="statatusTag">availability {props.status}</span>
+      <span
+        onClick={() => {
+          deleteMotorcycle(props.id);
+        }}
+      >
+        eliminar
+      </span>
     </div>
   );
 }

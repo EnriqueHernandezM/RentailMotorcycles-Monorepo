@@ -6,7 +6,7 @@ export enum OptionsStatus {
 }
 
 @Table
-export class BikesAvailablesEntity extends Model<BikesAvailablesEntity> {
+export class BikesAvailablesEntities extends Model<BikesAvailablesEntities> {
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -55,4 +55,7 @@ export class BikesAvailablesEntity extends Model<BikesAvailablesEntity> {
     allowNull: false,
   })
   status: OptionsStatus;
+
+  /* @BelongsToMany(() => UsersEntities, () => UsersBikesEntities)
+  users: Array<UsersEntities & { UsersBikesEntities: UsersBikesEntities }>; */
 }

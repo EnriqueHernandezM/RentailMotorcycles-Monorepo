@@ -10,8 +10,10 @@ import {
   Patch,
   ParseIntPipe,
   UseFilters,
+  UseGuards,
 } from '@nestjs/common';
 import { BikesAvailablesService } from './bikes-availables.service';
+import { AuthGuard } from '../users/usersAuth.guard';
 import {
   CreateBikeAvailable,
   UpdateBikeAvailable,
@@ -24,7 +26,7 @@ import {
   UpdateItemRes,
 } from './dto/res-swagger.dto';
 @ApiTags('Motorcycles')
-@Controller('rentail_Motorcycles/api')
+@Controller('rentail_motorcycles/api')
 export class BikesAvailablesController {
   constructor(readonly bikesAvailablesService: BikesAvailablesService) {}
 
@@ -33,7 +35,6 @@ export class BikesAvailablesController {
     status: 200,
     description: 'Get inventory motorcycles',
   })
-  @UseFilters(new HttpExceptionFilter())
   async allItems(@Res() res) {
     try {
       const inventary = await this.bikesAvailablesService.findAll();
@@ -54,9 +55,11 @@ export class BikesAvailablesController {
     @Body() createBikeAvailable: CreateBikeAvailable,
   ) {
     try {
+      console.log('kijk');
       const createNew = await this.bikesAvailablesService.create(
         createBikeAvailable,
       );
+
       return res.status(HttpStatus.CREATED).json({
         message: 'reciveid',
         itemSaves: createNew,
@@ -66,14 +69,13 @@ export class BikesAvailablesController {
       throw error;
     }
   }
-
+  @UseGuards(AuthGuard)
   @Delete('/deleteOne/:id')
   @ApiResponse({
     status: 200,
     description: 'Delete one element of inventory',
     type: DeleteElementRes,
   })
-  @UseFilters(new HttpExceptionFilter())
   async deleteOneItem(@Res() res, @Param('id', ParseIntPipe) id: number) {
     try {
       const deleteOneItem = await this.bikesAvailablesService.deleteOne(id);
@@ -93,7 +95,6 @@ export class BikesAvailablesController {
     description: 'Modified one element of inventory',
     type: UpdateItemRes,
   })
-  @UseFilters(new HttpExceptionFilter())
   async modifiedOneItem(
     @Res() res,
     @Body() updateBikeAvailable: UpdateBikeAvailable,

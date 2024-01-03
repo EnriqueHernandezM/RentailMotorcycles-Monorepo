@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize-typescript';
-import { BikesAvailablesEntity } from './enties/bikes-avibles.entity';
+import { BikesAvailablesEntities } from './enties/bikes-avibles.entity';
 import { ConfigService } from '@nestjs/config';
+import { UsersEntities } from './enties/users.entity';
+import { UsersBikesEntities } from './enties/usersBikes.entity';
 
 const configService = new ConfigService();
 
@@ -17,7 +19,10 @@ export const dataBaseProviders = [
         database: configService.get<string>('NAME_DB'),
       });
 
-      sequelize.addModels([BikesAvailablesEntity]);
+      sequelize.addModels([UsersBikesEntities]);
+      sequelize.addModels([BikesAvailablesEntities]);
+      sequelize.addModels([UsersEntities]);
+
       await sequelize.sync();
       return sequelize;
     },

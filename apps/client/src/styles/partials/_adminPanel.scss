@@ -1,0 +1,10 @@
+#buttonSelectFiles {
+}
+#previewAddImage {
+  width: 100%;
+  display: grid;
+  justify-items: center; // grid-template-columns: 1fr;
+  img {
+    width: 30%;
+  }
+}

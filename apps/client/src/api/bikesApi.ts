@@ -1,20 +1,20 @@
 //import { use } from "react";
-
-interface ObjectBick {
-  brand: "string";
-  model: "string";
-  cc: 2000;
-  occupants: 3;
-  autonomy: 999;
-  speed: 500;
-  weigth: 999;
-  image: ".jpg";
-  status: "Available";
+interface AddNewMotorcycle {
+  brand: string;
+  model: string;
+  cc: string;
+  occupants: string;
+  autonomy: string;
+  speed: string;
+  weigth: string;
+  status: string;
+  image: string;
 }
+
 async function getAllsItemsApi() {
   try {
     const allBikesInv = await fetch(
-      "http://localhost:8082/rentail_Motorcycles/api/bikes-availables",
+      "http://localhost:8082/rentail_motorcycles/api/bikes-availables",
       {
         method: "GET",
         headers: {
@@ -23,32 +23,65 @@ async function getAllsItemsApi() {
       }
     );
     if (!allBikesInv.ok) {
-      console.log("KOKO");
-
-      alert("AA");
       throw new Error("Err in Api");
     }
     const resAllBikesInv = await allBikesInv.json();
-    console.log(typeof resAllBikesInv);
-
     return resAllBikesInv.inventary;
   } catch (err) {
     console.log(err);
   }
 }
 
-async function addMotorcycleInventoryApi() {
+async function addMotorcycleInventoryApi(bodyC: AddNewMotorcycle) {
   try {
-    const createNewItem = fetch("/rentail_Motorcycles/api/postNew", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(createNewItem);
+    const createNewItem = await fetch(
+      "http://localhost:8082/rentail_motorcycles/api/postNew",
+      {
+        method: "POST",
+        //credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bodyC),
+      }
+    );
+    if (!createNewItem.ok) {
+      throw new Error("Err in Api");
+    }
+    const resToApi = await createNewItem.json();
+    return resToApi;
   } catch (err) {
     console.log(err);
   }
 }
-export { getAllsItemsApi, addMotorcycleInventoryApi };
+async function deleteMotorcycleInventoryApi(id: number) {
+  try {
+    const catchToken = localStorage.getItem("tokenSession");
+    const createNewItem = await fetch(
+      `http://localhost:8082/rentail_motorcycles/api/deleteOne/${id}`,
+      {
+        method: "DELETE",
+        //credentials: "include",
+        headers: {
+          Authorization: `Bearer ${catchToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!createNewItem.ok) {
+      throw new Error("Err in Api");
+    }
+    const resToApi = await createNewItem.json();
+    console.log(resToApi);
+
+    return resToApi;
+  } catch (err) {
+    console.log(err);
+  }
+}
+export {
+  getAllsItemsApi,
+  addMotorcycleInventoryApi,
+  deleteMotorcycleInventoryApi,
+};
+export type { AddNewMotorcycle };

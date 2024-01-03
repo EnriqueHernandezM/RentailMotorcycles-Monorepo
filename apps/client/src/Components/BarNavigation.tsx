@@ -1,6 +1,7 @@
 import logoNav from "../images/logoNavBar.png";
 import { useChangeTheme, useThemeValue } from "../functions/ThemeContext";
-import { useChangeRout } from "../functions/RoutsContext";
+import { availableRoutes, useChangeRout } from "../functions/RoutsContext";
+
 export default function BarNavigation() {
   let typeLigth = useThemeValue();
 
@@ -9,17 +10,19 @@ export default function BarNavigation() {
   return (
     <nav id={typeLigth === false ? "navBar" : "navBarNigth"}>
       <ul>
-        <li onClick={() => changeRout("/")}>
+        <li onClick={() => changeRout(availableRoutes.home)}>
           <a className="logoNavBar" href="#">
             Rentail Motorcycles
           </a>
           <img id="logoNavBarImg" src={logoNav} alt="Logo Motorcycle" />
         </li>
-        <li onClick={() => changeRout("/form")}>
-          <a href="##"> Hola </a>
+        <li onClick={() => changeRout(availableRoutes.formCreateAccount)}>
+          <a href="#"> Log in </a>
         </li>
         <li>
-          <a href="##">Hola 2</a>
+          <a onClick={() => changeRout(availableRoutes.formAdmin)} href="#">
+            Form Admin
+          </a>
         </li>
       </ul>{" "}
       <label id="containerSwitchLigth">
