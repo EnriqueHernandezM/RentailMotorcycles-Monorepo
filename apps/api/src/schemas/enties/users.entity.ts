@@ -1,4 +1,5 @@
 import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Role } from '../enums/role.enum';
 
 @Table
 export class UsersEntities extends Model<UsersEntities> {
@@ -45,6 +46,10 @@ export class UsersEntities extends Model<UsersEntities> {
     allowNull: true,
   })
   idMotorcycleAsigned: number;
+  @Column({
+    allowNull: false,
+  })
+  roles: Role;
 }
 
 /* chan() {

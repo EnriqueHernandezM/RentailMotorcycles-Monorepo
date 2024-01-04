@@ -11,12 +11,15 @@ import {
   ParseIntPipe,
   UseFilters,
   UseGuards,
-  Header,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUser } from './dto/create-user.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ConectUser } from './dto/conect-user.dto';
+import { AuthGuard } from './usersAuth.guard';
+import { Roles } from '../config/roles.decorator';
+import { Role } from '../schemas/enums/role.enum';
+import { RolesGuard } from './admins.guard';
 
 @ApiTags('Users')
 @Controller('rentail_motorcycles/api/users')
@@ -51,15 +54,18 @@ export class UsersController {
       throw err;
     }
   }
+
+  @UseGuards(AuthGuard)
+  @UseGuards(RolesGuard)
   @Get('/oneUser/:id')
   @ApiResponse({
     status: 200,
     description: 'Get inventory motorcycles',
   })
+  @Roles(Role.Admin)
   async oneUser(@Res() res, @Param('id', ParseIntPipe) id: number) {
     try {
       const resGetUser = await this.userService.findOneUser(id);
-      console.log(resGetUser);
 
       return res.status(HttpStatus.OK).json(resGetUser);
     } catch (err) {

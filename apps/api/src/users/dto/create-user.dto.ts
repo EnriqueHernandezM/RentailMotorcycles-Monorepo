@@ -12,6 +12,7 @@ import {
   IsEmail,
   IsBoolean,
 } from 'class-validator';
+import { Role } from 'src/schemas/enums/role.enum';
 
 export class CreateUser {
   @IsString()
@@ -48,4 +49,8 @@ export class CreateUser {
   @IsNumber()
   @IsNotEmpty()
   readonly idMotorcycleAsigned: number;
+  /*  @IsString()
+  @IsNotEmpty()
+  @IsIn([Role.Admin, Role.User])
+  readonly roles: Role; */
 }

@@ -3,6 +3,7 @@ import {
   Inject,
   NotFoundException,
   InternalServerErrorException,
+  BadRequestException,
 } from '@nestjs/common';
 import { CreateUser } from './dto/create-user.dto';
 import { UsersEntities } from 'src/schemas/enties/users.entity';
@@ -10,6 +11,7 @@ import { JwtService } from '@nestjs/jwt';
 import { jwtConstants } from './usersAuth.consts';
 import { ConectUser } from './dto/conect-user.dto';
 import { log } from 'util';
+import { Role } from 'src/schemas/enums/role.enum';
 @Injectable()
 export class UsersService {
   constructor(
@@ -22,19 +24,18 @@ export class UsersService {
     try {
       const [user, created] = await this.tableUsers.findOrCreate({
         where: { email: createUser.email },
-        defaults: createUser,
+        defaults: { roles: Role.User, ...createUser },
       });
       if (created) {
         const payload = { sub: user.id, emailUser: user.email };
         const access_token = await this.jwtService.signAsync(payload);
-        const { id, ...userResObject } = user.dataValues;
+        const { id, password, roles, ...userResObject } = user.dataValues;
         return { ...userResObject, access_token };
-        //definir un dto de salida de datos de usuario
+        //definir un dto de salida de datos de usuario yo creo seria lo apropiado
       }
-      //Importante saber con que resplner a un usuario existente
-      throw new NotFoundException('User Existin');
+      throw new BadRequestException('User Exists');
     } catch (error) {
-      if (error.status === 404) {
+      if (error.status === 400) {
         throw error;
       }
       throw new InternalServerErrorException(`${error}`);

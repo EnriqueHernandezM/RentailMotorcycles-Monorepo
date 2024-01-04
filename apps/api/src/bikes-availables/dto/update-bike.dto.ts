@@ -11,7 +11,7 @@ import {
   Min,
   MinLength,
 } from 'class-validator';
-import { OptionsStatus } from 'src/schemas/enties/bikes-avibles.entity';
+import { OptionsStatus } from '../../schemas/enums/optionStatusBike.enum';
 export class UpdateBikeAvailable {
   @IsString()
   @IsOptional()

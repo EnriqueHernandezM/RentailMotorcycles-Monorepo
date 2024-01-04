@@ -6,6 +6,8 @@ import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './usersAuth.consts';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './admins.guard';
 @Module({
   imports: [
     databaseModule,

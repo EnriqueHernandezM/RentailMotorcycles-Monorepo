@@ -1,9 +1,5 @@
 import { Table, Column, Model, DataType } from 'sequelize-typescript';
-
-export enum OptionsStatus {
-  available = 'Available',
-  onRoute = 'On route',
-}
+import { OptionsStatus } from '../enums/optionStatusBike.enum';
 
 @Table
 export class BikesAvailablesEntities extends Model<BikesAvailablesEntities> {
