@@ -23,8 +23,10 @@ export default function MainHomePage() {
   }, []);
 
   const carouselImages = (isLeft: boolean, isRigth: boolean) => {
-    const limitImages = allInventory.length;
-    if (isLeft === true && isRigth === false) {
+    const limitImages = allInventory?.length;
+    console.log(limitImages);
+
+    if (limitImages && isLeft === true && isRigth === false) {
       setNumPositionItem((prev) => {
         if (prev === 0) {
           return prev;
@@ -32,7 +34,7 @@ export default function MainHomePage() {
           return prev - 1;
         }
       });
-    } else if (isLeft === false && isRigth === true) {
+    } else if (limitImages && isLeft === false && isRigth === true) {
       setNumPositionItem((prev) => {
         if (prev === limitImages - 1) {
           return prev;
@@ -42,7 +44,7 @@ export default function MainHomePage() {
     }
   };
 
-  const createCardsItems = allInventory.map((el: any) => {
+  const createCardsItems = allInventory?.map((el: any) => {
     return <CardItem key={el.id} {...el} />;
   });
 
@@ -52,7 +54,7 @@ export default function MainHomePage() {
         <img className="hondaCbr" src={hondaCbr} alt="honda cbr 600" />
         <img className="yamahaTenere" src={yamahaTenere} alt="yamaha tenere" />
       </div>
-      {createCardsItems.length === 0 ? (
+      {createCardsItems?.length === 0 ? (
         <div id="contentMsgeNotAvailable">
           <h5 className="msgeNotAvailables">
             oh oh Apparentlythere are no motorcycles available
@@ -69,15 +71,18 @@ export default function MainHomePage() {
             ></span>
           )}
           {widthWindow > 1024 && (
-            <div className="prob"> {createCardsItems[numPositionItem - 1]}</div>
+            <div className="prob">
+              {" "}
+              {createCardsItems && createCardsItems[numPositionItem - 1]}
+            </div>
           )}
           {widthWindow > 1024
-            ? createCardsItems[numPositionItem]
+            ? createCardsItems && createCardsItems[numPositionItem]
             : createCardsItems}
           {widthWindow > 1024 && (
             <div className="prob2">
               {" "}
-              {createCardsItems[numPositionItem + 1]}
+              {createCardsItems && createCardsItems[numPositionItem + 1]}
             </div>
           )}
           {widthWindow > 1024 && (

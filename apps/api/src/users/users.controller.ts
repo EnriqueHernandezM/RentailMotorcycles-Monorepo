@@ -56,13 +56,13 @@ export class UsersController {
   }
 
   @UseGuards(AuthGuard)
-  @UseGuards(RolesGuard)
+  //@UseGuards(RolesGuard)
   @Get('/oneUser/:id')
   @ApiResponse({
     status: 200,
     description: 'Get inventory motorcycles',
   })
-  @Roles(Role.Admin)
+  //@Roles(Role.Admin)
   async oneUser(@Res() res, @Param('id', ParseIntPipe) id: number) {
     try {
       const resGetUser = await this.userService.findOneUser(id);

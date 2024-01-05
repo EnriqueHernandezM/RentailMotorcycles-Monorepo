@@ -27,7 +27,11 @@ export class UsersService {
         defaults: { roles: Role.User, ...createUser },
       });
       if (created) {
-        const payload = { sub: user.id, emailUser: user.email };
+        const payload = {
+          sub: user.id,
+          emailUser: user.email,
+          roles: user.roles,
+        };
         const access_token = await this.jwtService.signAsync(payload);
         const { id, password, roles, ...userResObject } = user.dataValues;
         return { ...userResObject, access_token };
@@ -43,7 +47,13 @@ export class UsersService {
   }
   async conectUser(useInfo: ConectUser) {
     try {
-      const payload = { sub: useInfo.password, emailUser: useInfo.email };
+      const payload = { emailUser: useInfo.email }; // roles: userInfo.roles
+      /* const base64 = base64Url.replace("-", "+").replace("_", "/");
+  }
+
+  // return the result parsed in JSON
+  return JSON.parse(window.atob(base64));
+ */
       return {
         access_token: await this.jwtService.signAsync(payload),
       };
