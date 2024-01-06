@@ -37,29 +37,57 @@ async function userCreateAccount(bodyUser: UserCreateAccount) {
   } catch (err) {
     console.log(err);
   }
-  /*  async function userConnectAccount(bodyUser: UserCreateAccount) {
-    try {
-      const createNewItem = await fetch(
-        "http://localhost:8082/rentail_motorcycles/api/users/conect",
-        {
-          method: "POST",
-          //credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            //Authorization: "Bearer ",
-          },
-          body: JSON.stringify(bodyUser),
-        }
-      );
-  
-      if (!createNewItem.ok) {
-        throw new Error("Err in Api");
-      }
-    
-      return resUser;
-    } catch (err) {
-      console.log(err);
-    } */
 }
-
-export { userCreateAccount };
+async function userConnectAccount(bodyUser: UserCreateAccount) {
+  try {
+    const connectUser = await fetch(
+      "http://localhost:8082/rentail_motorcycles/api/users/conect",
+      {
+        method: "POST",
+        //credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          //Authorization: "Bearer ",
+        },
+        body: JSON.stringify(bodyUser),
+      }
+    );
+    if (!connectUser.ok) {
+      throw new Error("Err in Api");
+    }
+    const resToApi = await connectUser.json();
+    const catchToken = resToApi.access_token;
+    localStorage.setItem("tokenSession", catchToken);
+    const { access_token, ...resUserConnect } = resToApi;
+    return resUserConnect;
+  } catch (err) {
+    console.log(err);
+  }
+}
+async function viewOneUser(bodyUser: UserCreateAccount) {
+  try {
+    const connectUser = await fetch(
+      "http://localhost:8082/rentail_motorcycles/api/users/conect",
+      {
+        method: "POST",
+        //credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          //Authorization: "Bearer ",
+        },
+        body: JSON.stringify(bodyUser),
+      }
+    );
+    if (!connectUser.ok) {
+      throw new Error("Err in Api");
+    }
+    const resToApi = await connectUser.json();
+    const catchToken = resToApi.access_token;
+    localStorage.setItem("tokenSession", catchToken);
+    const { access_token, ...resUserConnect } = resToApi;
+    return resUserConnect;
+  } catch (err) {
+    console.log(err);
+  }
+}
+export { userCreateAccount, userConnectAccount };

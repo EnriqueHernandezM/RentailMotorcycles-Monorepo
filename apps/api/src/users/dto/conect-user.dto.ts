@@ -13,9 +13,9 @@ import {
 } from 'class-validator';
 
 export class ConectUser {
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  readonly roles: number;
+  readonly roles: string;
   @IsString()
   @IsNotEmpty()
   @IsEmail()

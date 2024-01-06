@@ -47,7 +47,7 @@ export class UsersService {
   }
   async conectUser(useInfo: ConectUser) {
     try {
-      const payload = { emailUser: useInfo.email }; // roles: userInfo.roles
+      const payload = { emailUser: useInfo.email, roles: useInfo.roles }; // roles: userInfo.roles
       /* const base64 = base64Url.replace("-", "+").replace("_", "/");
   }
 

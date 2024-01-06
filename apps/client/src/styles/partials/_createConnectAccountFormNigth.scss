@@ -1,5 +1,5 @@
-#formCreateAccountNigth {
-  @extend #formCreateAccount;
+.formCreateAccountNigth {
+  @extend .formCreateAccount;
   label {
     .inputsText {
       background-color: $principalColorNigthMod;

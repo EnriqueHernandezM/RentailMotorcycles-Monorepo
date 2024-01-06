@@ -51,7 +51,7 @@ export default function CreateCountForm() {
       onSubmit={(e) => {
         envFormCreateNewUser(e);
       }}
-      id={
+      className={
         typeLigthValue === false
           ? "formCreateAccount"
           : "formCreateAccountNigth"
