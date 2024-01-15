@@ -7,10 +7,3 @@ export const UsersEntitiesProviders = [
     useValue: UsersEntities,
   },
 ];
-
-/* export const UsersBikesEntitiesProviders = [
-  {
-    provide: 'tableUsersBikesAvailables',
-    useValue: UsersBikesEntities,
-  },
-]; */

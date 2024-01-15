@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { ConfigModule } from '@nestjs/config';
-import configuration from './config/env.config';
+import configuration from './config/configuration';
 import { join } from 'path';
 import { BikesAvailablesModule } from './bikes-availables/bikes-availables.module';
 import { UsersModule } from './users/users.module';
@@ -15,6 +15,7 @@ import { RolesGuard } from './users/admins.guard';
     ConfigModule.forRoot({
       load: [configuration],
       isGlobal: true,
+      envFilePath: '.env',
     }),
     BikesAvailablesModule,
     UsersModule,

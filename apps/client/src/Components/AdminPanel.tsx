@@ -71,7 +71,7 @@ export default function AdminPanel() {
 
   return (
     <form
-      id={
+      className={
         typeLigthValue === false
           ? "formCreateAccount"
           : "formCreateAccountNigth"

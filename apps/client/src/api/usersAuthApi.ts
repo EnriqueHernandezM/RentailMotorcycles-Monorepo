@@ -90,4 +90,4 @@ async function viewOneUser(bodyUser: UserCreateAccount) {
     console.log(err);
   }
 }
-export { userCreateAccount, userConnectAccount };
+export { userCreateAccount, userConnectAccount, viewOneUser };

@@ -8,10 +8,10 @@ import {
 import { CreateUser } from './dto/create-user.dto';
 import { UsersEntities } from 'src/schemas/enties/users.entity';
 import { JwtService } from '@nestjs/jwt';
-import { jwtConstants } from './usersAuth.consts';
 import { ConectUser } from './dto/conect-user.dto';
 import { log } from 'util';
 import { Role } from 'src/schemas/enums/role.enum';
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -22,6 +22,11 @@ export class UsersService {
 
   async createNewUser(createUser: CreateUser) {
     try {
+      /////
+      //
+      /////////////////////encriptar paswoord
+      //
+      //
       const [user, created] = await this.tableUsers.findOrCreate({
         where: { email: createUser.email },
         defaults: { roles: Role.User, ...createUser },
@@ -47,15 +52,18 @@ export class UsersService {
   }
   async conectUser(useInfo: ConectUser) {
     try {
-      const payload = { emailUser: useInfo.email, roles: useInfo.roles }; // roles: userInfo.roles
       /* const base64 = base64Url.replace("-", "+").replace("_", "/");
   }
-
   // return the result parsed in JSON
   return JSON.parse(window.atob(base64));
  */
+      const { password, email, roles } = useInfo;
+      //aqui o obtengo id o lo pongo mcomo null
+      let id = null;
+      const access_token = await this.factoryTokens({ email, id, roles });
+
       return {
-        access_token: await this.jwtService.signAsync(payload),
+        access_token,
       };
     } catch (error) {
       throw new InternalServerErrorException(`${error}`);
@@ -72,6 +80,26 @@ export class UsersService {
       if (error.status === 404) {
         throw error;
       }
+      throw new InternalServerErrorException(`${error}`);
+    }
+  }
+
+  private async factoryTokens(info: { id: any; email: any; roles: any }) {
+    try {
+      let payload;
+      if (info.id === null) {
+        payload = {
+          emailUser: info.email,
+          roles: info.roles,
+        };
+      }
+      payload = {
+        sub: info.id,
+        emailUser: info.email,
+        roles: info.roles,
+      };
+      return await this.jwtService.signAsync(payload);
+    } catch (error) {
       throw new InternalServerErrorException(`${error}`);
     }
   }

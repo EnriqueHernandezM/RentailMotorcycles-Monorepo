@@ -25,6 +25,9 @@ import {
   DeleteElementRes,
   UpdateItemRes,
 } from './dto/res-swagger.dto';
+import { Role } from 'src/schemas/enums/role.enum';
+import { Roles } from 'src/config/roles.decorator';
+import { RolesGuard } from 'src/users/admins.guard';
 @ApiTags('Motorcycles')
 @Controller('rentail_motorcycles/api')
 export class BikesAvailablesController {
@@ -70,7 +73,9 @@ export class BikesAvailablesController {
     }
   }
   @UseGuards(AuthGuard)
+  @UseGuards(RolesGuard)
   @Delete('/deleteOne/:id')
+  @Roles(Role.Admin)
   @ApiResponse({
     status: 200,
     description: 'Delete one element of inventory',
