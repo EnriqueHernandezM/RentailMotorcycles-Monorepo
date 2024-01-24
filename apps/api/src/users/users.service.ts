@@ -9,9 +9,8 @@ import { CreateUser } from './dto/create-user.dto';
 import { UsersEntities } from 'src/schemas/enties/users.entity';
 import { JwtService } from '@nestjs/jwt';
 import { ConectUser } from './dto/conect-user.dto';
-import { log } from 'util';
 import { Role } from 'src/schemas/enums/role.enum';
-
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class UsersService {
   constructor(
@@ -20,16 +19,15 @@ export class UsersService {
     private jwtService: JwtService,
   ) {}
 
-  async createNewUser(createUser: CreateUser) {
+  async createNewUser(createUser: CreateUser, haveApin?: number | false) {
     try {
-      /////
-      //
-      /////////////////////encriptar paswoord
-      //
-      //
+      const saltOrRounds = 10;
+      const hash = await bcrypt.hash(createUser.password, saltOrRounds);
+      createUser.password = hash;
+      const roleToCount = await this.asignRoleToUser(haveApin);
       const [user, created] = await this.tableUsers.findOrCreate({
         where: { email: createUser.email },
-        defaults: { roles: Role.User, ...createUser },
+        defaults: { roles: roleToCount, ...createUser },
       });
       if (created) {
         const payload = {
@@ -59,7 +57,7 @@ export class UsersService {
  */
       const { password, email, roles } = useInfo;
       //aqui o obtengo id o lo pongo mcomo null
-      let id = null;
+      const id = null;
       const access_token = await this.factoryTokens({ email, id, roles });
 
       return {
@@ -99,6 +97,18 @@ export class UsersService {
         roles: info.roles,
       };
       return await this.jwtService.signAsync(payload);
+    } catch (error) {
+      throw new InternalServerErrorException(`${error}`);
+    }
+  }
+  private async asignRoleToUser(pin: number | false) {
+    try {
+      if (pin === 123) {
+        return Role.Admin;
+      }
+      if (pin === false) {
+        return Role.User;
+      }
     } catch (error) {
       throw new InternalServerErrorException(`${error}`);
     }

@@ -35,7 +35,7 @@ export class CreateUser {
   @IsNotEmpty()
   @MinLength(6)
   @MaxLength(40)
-  readonly password: string;
+  password: string;
   @IsString()
   @IsNotEmpty()
   readonly birthDate: string;

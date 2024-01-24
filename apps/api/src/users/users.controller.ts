@@ -11,6 +11,8 @@ import {
   ParseIntPipe,
   UseFilters,
   UseGuards,
+  Query,
+  DefaultValuePipe,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUser } from './dto/create-user.dto';
@@ -30,10 +32,17 @@ export class UsersController {
     status: 200,
     description: 'create a new User',
   })
-  async createANewUser(@Res() res, @Body() createUser: CreateUser) {
+  async createANewUser(
+    @Res() res,
+    @Body() createUser: CreateUser,
+    @Query('pinToAdmin')
+    pinToAdmin?: number | false,
+  ) {
     try {
+      const havePin = pinToAdmin ? pinToAdmin : false;
       const resToCreateNewUser = await this.userService.createNewUser(
         createUser,
+        havePin,
       );
       return res.status(HttpStatus.CREATED).json(resToCreateNewUser);
     } catch (err) {
