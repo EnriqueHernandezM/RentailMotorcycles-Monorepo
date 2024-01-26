@@ -15,9 +15,6 @@ import {
 export class ConectUser {
   @IsString()
   @IsNotEmpty()
-  readonly roles: string;
-  @IsString()
-  @IsNotEmpty()
   @IsEmail()
   readonly email: string;
   @IsString()

@@ -4,6 +4,7 @@ import {
   NotFoundException,
   InternalServerErrorException,
   BadRequestException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { CreateUser } from './dto/create-user.dto';
 import { UsersEntities } from 'src/schemas/enties/users.entity';
@@ -38,7 +39,6 @@ export class UsersService {
         const access_token = await this.jwtService.signAsync(payload);
         const { id, password, roles, ...userResObject } = user.dataValues;
         return { ...userResObject, access_token };
-        //definir un dto de salida de datos de usuario yo creo seria lo apropiado
       }
       throw new BadRequestException('User Exists');
     } catch (error) {
@@ -48,25 +48,37 @@ export class UsersService {
       throw new InternalServerErrorException(`${error}`);
     }
   }
+
   async conectUser(useInfo: ConectUser) {
     try {
-      /* const base64 = base64Url.replace("-", "+").replace("_", "/");
-  }
-  // return the result parsed in JSON
-  return JSON.parse(window.atob(base64));
- */
-      const { password, email, roles } = useInfo;
-      //aqui o obtengo id o lo pongo mcomo null
-      const id = null;
-      const access_token = await this.factoryTokens({ email, id, roles });
-
+      const findThatUserToCompare = await this.tableUsers.findOne({
+        where: {
+          email: useInfo.email,
+        },
+      });
+      const { email } = useInfo;
+      const isMatch = await bcrypt.compare(
+        useInfo.password,
+        findThatUserToCompare.password,
+      );
+      const { id, password, roles, ...userToRes } =
+        findThatUserToCompare.dataValues;
+      if (!isMatch) {
+        throw new UnauthorizedException();
+      }
+      const access_token = await this.factoryTokens({ id, email, roles });
       return {
+        ...userToRes,
         access_token,
       };
     } catch (error) {
+      if (error.status === 401) {
+        throw error;
+      }
       throw new InternalServerErrorException(`${error}`);
     }
   }
+
   async findOneUser(id: number): Promise<CreateUser> {
     try {
       const find = await this.tableUsers.findOne({ where: { id: id } });
@@ -82,16 +94,13 @@ export class UsersService {
     }
   }
 
-  private async factoryTokens(info: { id: any; email: any; roles: any }) {
+  private async factoryTokens(info: {
+    id: number;
+    email: string;
+    roles: string;
+  }) {
     try {
-      let payload;
-      if (info.id === null) {
-        payload = {
-          emailUser: info.email,
-          roles: info.roles,
-        };
-      }
-      payload = {
+      const payload = {
         sub: info.id,
         emailUser: info.email,
         roles: info.roles,
