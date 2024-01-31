@@ -1,34 +1,40 @@
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useThemeValue } from "../functions/ThemeContext";
+import { availableRoutes, useChangeRout } from "../functions/RoutsContext";
+import { userConnectAccount } from "../api/usersAuthApi";
 
 interface InputsConnectAccount {
   email: string;
   password: string;
-  roles: string;
 }
 
 export default function ConnectCountForm() {
   const typeLigthValue = useThemeValue();
-
+  const changeRout = useChangeRout();
   const [valuesFormConectAccount, setValuesFormConectAccount] =
     useState<InputsConnectAccount>({
       email: "",
       password: "",
-      roles: "admin" || "user",
     });
 
+  function changesInFormConnectUser(e: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    setValuesFormConectAccount((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  }
   function envFormConnectUser(e: FormEvent<HTMLElement>) {
     e.preventDefault();
-    console.log("Quiero mi fucking api");
-    console.log(valuesFormConectAccount);
-    console.log("ya de una vena pa que sangre");
+    userConnectAccount(valuesFormConectAccount)
+      .then((res) => console.log(res))
+      .catch((err: any) => console.log(err));
   }
   return (
     <form
       autoComplete="no"
-      onSubmit={(e) => {
-        envFormConnectUser(e);
-      }}
       className={
         typeLigthValue === false
           ? "formCreateAccount"
@@ -39,7 +45,9 @@ export default function ConnectCountForm() {
         Email
         <input
           type="email"
-          onChange={(e) => {}}
+          onChange={(e) => {
+            changesInFormConnectUser(e);
+          }}
           name="email"
           className="inputsText"
         />
@@ -47,13 +55,30 @@ export default function ConnectCountForm() {
       <label>
         password
         <input
-          type="text"
-          onChange={(e) => {}}
-          name="email"
+          type="password"
+          onChange={(e) => {
+            changesInFormConnectUser(e);
+          }}
+          name="password"
           className="inputsText"
           minLength={7}
         />
       </label>
+      <button
+        onClick={(e) => {
+          envFormConnectUser(e);
+        }}
+        className="buttonForms"
+      >
+        Connect
+      </button>
+
+      <button
+        onClick={() => changeRout(availableRoutes.formCreateAccount)}
+        className="buttonForms"
+      >
+        Create Account
+      </button>
     </form>
   );
 }

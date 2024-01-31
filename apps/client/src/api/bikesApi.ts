@@ -34,6 +34,7 @@ async function getAllsItemsApi() {
 
 async function addMotorcycleInventoryApi(bodyC: AddNewMotorcycle) {
   try {
+    const extarctCatchToken = localStorage.getItem("tokenSession");
     const createNewItem = await fetch(
       "http://localhost:8082/rentail_motorcycles/api/postNew",
       {
@@ -41,6 +42,7 @@ async function addMotorcycleInventoryApi(bodyC: AddNewMotorcycle) {
         //credentials: "include",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${extarctCatchToken}`,
         },
         body: JSON.stringify(bodyC),
       }

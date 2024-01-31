@@ -1,5 +1,3 @@
-import { get } from "http";
-
 interface UserCreateAccount {
   name: string;
   email: string;
@@ -10,7 +8,10 @@ interface UserCreateAccount {
   motorcycleAsigned: boolean;
   idMotorcycleAsigned: number;
 }
-
+interface UserConnectAccount {
+  email: string;
+  password: string;
+}
 async function userCreateAccount(bodyUser: UserCreateAccount) {
   try {
     const createNewItem = await fetch(
@@ -38,7 +39,7 @@ async function userCreateAccount(bodyUser: UserCreateAccount) {
     console.log(err);
   }
 }
-async function userConnectAccount(bodyUser: UserCreateAccount) {
+async function userConnectAccount(bodyUser: UserConnectAccount) {
   try {
     const connectUser = await fetch(
       "http://localhost:8082/rentail_motorcycles/api/users/conect",
@@ -66,14 +67,14 @@ async function userConnectAccount(bodyUser: UserCreateAccount) {
 }
 async function viewOneUser(bodyUser: UserCreateAccount) {
   try {
+    const extarctCatchToken = localStorage.getItem("tokenSession");
     const connectUser = await fetch(
       "http://localhost:8082/rentail_motorcycles/api/users/conect",
       {
         method: "POST",
-        //credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          //Authorization: "Bearer ",
+          Authorization: `Bearer ${extarctCatchToken}`,
         },
         body: JSON.stringify(bodyUser),
       }
@@ -82,10 +83,7 @@ async function viewOneUser(bodyUser: UserCreateAccount) {
       throw new Error("Err in Api");
     }
     const resToApi = await connectUser.json();
-    const catchToken = resToApi.access_token;
-    localStorage.setItem("tokenSession", catchToken);
-    const { access_token, ...resUserConnect } = resToApi;
-    return resUserConnect;
+    return resToApi;
   } catch (err) {
     console.log(err);
   }

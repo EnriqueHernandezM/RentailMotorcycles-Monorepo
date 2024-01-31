@@ -26,6 +26,8 @@ export class UsersService {
       const hash = await bcrypt.hash(createUser.password, saltOrRounds);
       createUser.password = hash;
       const roleToCount = await this.asignRoleToUser(haveApin);
+      console.log(roleToCount);
+
       const [user, created] = await this.tableUsers.findOrCreate({
         where: { email: createUser.email },
         defaults: { roles: roleToCount, ...createUser },
@@ -113,6 +115,8 @@ export class UsersService {
   private async asignRoleToUser(pin: number | false) {
     try {
       if (pin === 123) {
+        console.log();
+
         return Role.Admin;
       }
       if (pin === false) {

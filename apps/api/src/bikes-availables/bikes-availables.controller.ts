@@ -28,6 +28,7 @@ import {
 import { Role } from 'src/schemas/enums/role.enum';
 import { Roles } from 'src/config/roles.decorator';
 import { RolesGuard } from 'src/users/admins.guard';
+
 @ApiTags('Motorcycles')
 @Controller('rentail_motorcycles/api')
 export class BikesAvailablesController {
@@ -47,6 +48,8 @@ export class BikesAvailablesController {
     }
   }
 
+  @UseGuards(AuthGuard)
+  @UseGuards(RolesGuard)
   @Post('/postNew')
   @ApiResponse({
     status: 201,
@@ -93,7 +96,8 @@ export class BikesAvailablesController {
       throw error;
     }
   }
-
+  @UseGuards(AuthGuard)
+  @UseGuards(RolesGuard)
   @Patch('/modifiedOne/:id')
   @ApiResponse({
     status: 200,

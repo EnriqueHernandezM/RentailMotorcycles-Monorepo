@@ -24,8 +24,6 @@ export default function MainHomePage() {
 
   const carouselImages = (isLeft: boolean, isRigth: boolean) => {
     const limitImages = allInventory?.length;
-    console.log(limitImages);
-
     if (limitImages && isLeft === true && isRigth === false) {
       setNumPositionItem((prev) => {
         if (prev === 0) {
@@ -47,7 +45,6 @@ export default function MainHomePage() {
   const createCardsItems = allInventory?.map((el: any) => {
     return <CardItem key={el.id} {...el} />;
   });
-
   return (
     <main>
       <div className="containerImagesMain">
@@ -95,7 +92,6 @@ export default function MainHomePage() {
           )}
         </div>
       )}
-
       <ContainerResume />
     </main>
   );

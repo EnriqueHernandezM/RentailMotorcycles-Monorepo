@@ -14,6 +14,9 @@ function App() {
         <BarNavigation />
         {routCurrent === availableRoutes.home && <MainHomePage />}
         {routCurrent === availableRoutes.formCreateAccount && (
+          <CreateCountForm />
+        )}
+        {routCurrent === availableRoutes.formConnectAcount && (
           <ConnectCountForm />
         )}
         {routCurrent === availableRoutes.formAdmin && <AdminPanel />}

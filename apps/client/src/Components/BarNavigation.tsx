@@ -16,7 +16,7 @@ export default function BarNavigation() {
           </a>
           <img id="logoNavBarImg" src={logoNav} alt="Logo Motorcycle" />
         </li>
-        <li onClick={() => changeRout(availableRoutes.formCreateAccount)}>
+        <li onClick={() => changeRout(availableRoutes.formConnectAcount)}>
           <a href="#"> Log in </a>
         </li>
         <li>
