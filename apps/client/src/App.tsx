@@ -6,6 +6,7 @@ import { availableRoutes, useRoutCurrent } from "./functions/RoutsContext";
 //esto de arriba es parte de ca,biar el enrutwamiento para el loigin
 import AdminPanel from "./Components/AdminPanel";
 import ConnectCountForm from "./Components/ConnectCountForm";
+import FooterPage from "./Components/FooterPage";
 function App() {
   const routCurrent = useRoutCurrent();
   return (
@@ -19,7 +20,8 @@ function App() {
         {routCurrent === availableRoutes.formConnectAcount && (
           <ConnectCountForm />
         )}
-        {routCurrent === availableRoutes.formAdmin && <AdminPanel />}
+        {routCurrent === availableRoutes.formAdmin && <AdminPanel />}{" "}
+        <FooterPage />
       </div>
     </ContextsThemeConatain>
   );

@@ -29,8 +29,8 @@ export default function ConnectCountForm() {
   function envFormConnectUser(e: FormEvent<HTMLElement>) {
     e.preventDefault();
     userConnectAccount(valuesFormConectAccount)
-      .then((res) => console.log(res))
-      .catch((err: any) => console.log(err));
+      .then((res) => changeRout(availableRoutes.home))
+      .catch((error: any) => changeRout(availableRoutes.formCreateAccount));
   }
   return (
     <form

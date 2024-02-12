@@ -49,8 +49,4 @@ export class CreateUser {
   @IsNumber()
   @IsNotEmpty()
   readonly idMotorcycleAsigned: number;
-  /*  @IsString()
-  @IsNotEmpty()
-  @IsIn([Role.Admin, Role.User])
-  readonly roles: Role; */
 }

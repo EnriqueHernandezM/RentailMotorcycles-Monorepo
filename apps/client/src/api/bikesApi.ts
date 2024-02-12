@@ -8,7 +8,7 @@ interface AddNewMotorcycle {
   speed: string;
   weigth: string;
   status: string;
-  image: string;
+  image: any;
 }
 
 async function getAllsItemsApi() {
@@ -34,12 +34,13 @@ async function getAllsItemsApi() {
 
 async function addMotorcycleInventoryApi(bodyC: AddNewMotorcycle) {
   try {
+    console.log(bodyC);
+
     const extarctCatchToken = localStorage.getItem("tokenSession");
     const createNewItem = await fetch(
       "http://localhost:8082/rentail_motorcycles/api/postNew",
       {
         method: "POST",
-        //credentials: "include",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${extarctCatchToken}`,
@@ -48,12 +49,16 @@ async function addMotorcycleInventoryApi(bodyC: AddNewMotorcycle) {
       }
     );
     if (!createNewItem.ok) {
-      throw new Error("Err in Api");
+      throw new Error("in create new itrem");
+    }
+    if (createNewItem.status === 401) {
+      console.log("verifieed this");
+      return { msge: "need credentials" };
     }
     const resToApi = await createNewItem.json();
     return resToApi;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    throw error;
   }
 }
 async function deleteMotorcycleInventoryApi(id: number) {

@@ -45,24 +45,22 @@ async function userConnectAccount(bodyUser: UserConnectAccount) {
       "http://localhost:8082/rentail_motorcycles/api/users/conect",
       {
         method: "POST",
-        //credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          //Authorization: "Bearer ",
         },
         body: JSON.stringify(bodyUser),
       }
     );
     if (!connectUser.ok) {
-      throw new Error("Err in Api");
+      throw new Error("Not Login");
     }
     const resToApi = await connectUser.json();
     const catchToken = resToApi.access_token;
     localStorage.setItem("tokenSession", catchToken);
     const { access_token, ...resUserConnect } = resToApi;
     return resUserConnect;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    throw error;
   }
 }
 async function viewOneUser(bodyUser: UserCreateAccount) {

@@ -1,0 +1,36 @@
+#footerPage {
+  background-color: $tertiarycolor;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 4px;
+  padding: 1% 1% 2% 1%;
+  div {
+    text-align: center;
+    width: 45%;
+    padding: 8px;
+    li {
+      list-style: none;
+      color: $principalFontColor;
+      font-size: 0.85rem;
+      @include mobileHorizontalAndTabletVertical {
+        font-size: $secondaryFontSize;
+      }
+      @include tabletHorixzontalAndDesk {
+        font-size: 1rem;
+      }
+    }
+    #lastColumInCenter {
+      width: 90%;
+    }
+  }
+}
+#footerPageNigth {
+  @extend #footerPage;
+  background-color: $principalColorNigthMod;
+  div {
+    li {
+      color: $principalFontColorNigth;
+    }
+  }
+}

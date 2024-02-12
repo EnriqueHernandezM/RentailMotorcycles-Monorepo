@@ -1,0 +1,553 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* colores */
+/*font  color */
+/* Fonts Sizes*/
+/* Fonts */
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgb(0, 0, 0);
+}
+
+.app {
+  background-color: rgb(240, 17, 17);
+}
+
+.appNigth {
+  background-color: rgb(0, 0, 0);
+}
+
+#navBar, #navBarNigth {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+  width: 100%;
+  box-shadow: 0px 2px 16px -5px rgb(255, 255, 255);
+  border-radius: 0px 0px 2px 20px;
+}
+#navBar ul, #navBarNigth ul {
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+#navBar ul li, #navBarNigth ul li {
+  padding: 2px 20px 2px 6px;
+  font-size: 1rem;
+}
+@media (min-width: 778px) {
+  #navBar ul li, #navBarNigth ul li {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 1024px) {
+  #navBar ul li, #navBarNigth ul li {
+    padding: 2px 29px 2px 2px;
+    font-size: 1.6rem;
+  }
+}
+#navBar ul li .logoNavBar, #navBarNigth ul li .logoNavBar {
+  font-size: 1.5rem;
+}
+@media (min-width: 778px) {
+  #navBar ul li .logoNavBar, #navBarNigth ul li .logoNavBar {
+    font-size: 2rem;
+  }
+}
+#navBar ul li #logoNavBarImg, #navBarNigth ul li #logoNavBarImg {
+  position: absolute;
+  width: 35px;
+  top: 8px;
+  left: 25%;
+}
+@media (min-width: 530px) {
+  #navBar ul li #logoNavBarImg, #navBarNigth ul li #logoNavBarImg {
+    top: 20px;
+    left: 38%;
+  }
+}
+@media (min-width: 778px) {
+  #navBar ul li #logoNavBarImg, #navBarNigth ul li #logoNavBarImg {
+    width: 44px;
+    position: initial;
+    padding-left: 7px;
+  }
+}
+#navBar ul li a, #navBarNigth ul li a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+#navBar #containerSwitchLigth, #navBarNigth #containerSwitchLigth {
+  position: relative;
+  display: flex;
+  padding: 20px 5px 20px 0px;
+  height: 28px;
+  align-items: center;
+  cursor: pointer;
+}
+#navBar #containerSwitchLigth #switchTypeLigth, #navBarNigth #containerSwitchLigth #switchTypeLigth {
+  display: none;
+}
+#navBar #containerSwitchLigth .rail, #navBarNigth #containerSwitchLigth .rail {
+  width: 52px;
+  height: 25px;
+  position: relative;
+  border-radius: 23px;
+  background-color: black;
+}
+@media (min-width: 778px) {
+  #navBar #containerSwitchLigth .rail, #navBarNigth #containerSwitchLigth .rail {
+    width: 72px;
+    height: 34px;
+  }
+}
+#navBar #containerSwitchLigth .rail .circle, #navBarNigth #containerSwitchLigth .rail .circle {
+  left: 0px;
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: 22%;
+  transition: 0.4s;
+  transform: translateY(-50%);
+}
+#navBar #containerSwitchLigth .rail .circle::before, #navBarNigth #containerSwitchLigth .rail .circle::before {
+  content: "🌖";
+  position: absolute;
+  left: -4px;
+  top: -10px;
+  font-size: 24px;
+}
+@media (min-width: 778px) {
+  #navBar #containerSwitchLigth .rail .circle::before, #navBarNigth #containerSwitchLigth .rail .circle::before {
+    font-size: 32px;
+    left: -4px;
+    top: -14px;
+  }
+}
+#navBar #containerSwitchLigth .rail .circle::after, #navBarNigth #containerSwitchLigth .rail .circle::after {
+  content: "☀️";
+  position: absolute;
+  right: -28px;
+  top: -10px;
+  display: none;
+  font-size: 24px;
+}
+@media (min-width: 778px) {
+  #navBar #containerSwitchLigth .rail .circle::after, #navBarNigth #containerSwitchLigth .rail .circle::after {
+    font-size: 32px;
+    left: 6px;
+    top: -14px;
+  }
+}
+#navBar #containerSwitchLigth #switchTypeLigth:checked ~ .rail .circle::before, #navBarNigth #containerSwitchLigth #switchTypeLigth:checked ~ .rail .circle::before {
+  display: none;
+}
+#navBar #containerSwitchLigth #switchTypeLigth:checked ~ .rail .circle::after, #navBarNigth #containerSwitchLigth #switchTypeLigth:checked ~ .rail .circle::after {
+  display: block;
+}
+#navBar #containerSwitchLigth #switchTypeLigth:checked ~ .rail .circle, #navBarNigth #containerSwitchLigth #switchTypeLigth:checked ~ .rail .circle {
+  transform: translate(27px, -54%);
+}
+#navBar #containerSwitchLigth #switchTypeLigth:checked ~ .rail, #navBarNigth #containerSwitchLigth #switchTypeLigth:checked ~ .rail {
+  background-color: rgb(186, 229, 241);
+}
+
+#navBarNigth {
+  box-shadow: 0px 2px 16px -5px rgb(12, 245, 55);
+}
+#navBarNigth ul li #logoNavBarImg {
+  filter: invert(1);
+}
+#navBarNigth ul li a {
+  color: rgb(202, 200, 200);
+}
+
+.containerImagesMain {
+  box-shadow: 0px 5px 25px 1px rgb(112, 112, 111);
+  filter: opacity(0.95);
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 2px;
+  margin: 20px 1px 1px 1px;
+  background: url("https://www.fundacionmapfre.org/media/educacion-divulgacion/prevencion/accidentes-mayores/caminar-carretera-1194x585-1.jpg");
+  background-size: cover;
+  background-position-y: -233px;
+}
+@media (min-width: 778px) {
+  .containerImagesMain {
+    background-position-y: -150px;
+  }
+}
+@media (min-width: 1024px) {
+  .containerImagesMain {
+    background-position-y: -330px;
+  }
+}
+.containerImagesMain .hondaCbr {
+  position: relative;
+  left: 15px;
+  width: 40%;
+}
+@media (min-width: 778px) {
+  .containerImagesMain .hondaCbr {
+    width: 35%;
+  }
+}
+@media (min-width: 1024px) {
+  .containerImagesMain .hondaCbr {
+    width: 31%;
+    height: 20rem;
+    left: 92px;
+  }
+}
+.containerImagesMain .yamahaTenere {
+  position: absolute;
+  right: 0px;
+  width: 55%;
+  bottom: -13px;
+}
+@media (min-width: 778px) {
+  .containerImagesMain .yamahaTenere {
+    width: 50%;
+    bottom: -30px;
+  }
+}
+@media (min-width: 1024px) {
+  .containerImagesMain .yamahaTenere {
+    bottom: -60px;
+    width: 43%;
+  }
+}
+
+#containerAllItems {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 5px 10% 5px 10%;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  overflow-y: hidden;
+}
+@media (min-width: 1024px) {
+  #containerAllItems {
+    padding: 5px 10% 5px 10%;
+    overflow-x: hidden;
+  }
+}
+#containerAllItems #cardForItem, #containerAllItems #cardForItemNigth {
+  cursor: pointer;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 10px;
+  flex: 0 0 100%;
+  margin: 0.5%;
+  margin-bottom: 60px;
+  margin-top: 10px;
+  padding: 3px 2px 3px 2px;
+}
+@media (min-width: 778px) {
+  #containerAllItems #cardForItem, #containerAllItems #cardForItemNigth {
+    width: 31.3%;
+    margin: 1%;
+  }
+}
+@media (min-width: 1024px) {
+  #containerAllItems #cardForItem, #containerAllItems #cardForItemNigth {
+    width: 24%;
+    margin: 0.5%;
+    margin-bottom: 60px;
+    margin-top: 10px;
+    flex: 0 0 100%;
+  }
+}
+#containerAllItems #cardForItem .photoCard, #containerAllItems #cardForItemNigth .photoCard {
+  width: 100%;
+}
+@media (min-width: 778px) {
+  #containerAllItems #cardForItem .photoCard, #containerAllItems #cardForItemNigth .photoCard {
+    width: 50%;
+  }
+}
+@media (min-width: 1024px) {
+  #containerAllItems #cardForItem .photoCard, #containerAllItems #cardForItemNigth .photoCard {
+    width: 40%;
+    height: 500px;
+  }
+}
+#containerAllItems #cardForItem h2, #containerAllItems #cardForItemNigth h2 {
+  width: 100%;
+}
+#containerAllItems #cardForItem h3, #containerAllItems #cardForItemNigth h3 {
+  width: 100%;
+}
+#containerAllItems #cardForItem .ccTag, #containerAllItems #cardForItemNigth .ccTag {
+  width: 75%;
+}
+#containerAllItems #cardForItem .ocupantsTag, #containerAllItems #cardForItemNigth .ocupantsTag {
+  width: 25%;
+}
+#containerAllItems #cardForItem .autonomyTag, #containerAllItems #cardForItemNigth .autonomyTag {
+  width: 100%;
+}
+#containerAllItems #cardForItem .speedTag, #containerAllItems #cardForItemNigth .speedTag {
+  width: 50%;
+}
+#containerAllItems #cardForItem .weigthTag, #containerAllItems #cardForItemNigth .weigthTag {
+  width: 50%;
+}
+#containerAllItems #cardForItem .statusTag, #containerAllItems #cardForItemNigth .statusTag {
+  width: 100%;
+}
+#containerAllItems #containerAllItemsBefore {
+  width: 20%;
+  height: 90%;
+  position: absolute;
+  left: 35px;
+  z-index: 10;
+  transition: 4s ease-in;
+}
+#containerAllItems #containerAllItemsAfter {
+  transition: 4s ease-in;
+  width: 20%;
+  height: 90%;
+  position: absolute;
+  right: 35px;
+  z-index: 10;
+}
+
+.prob {
+  position: absolute;
+  width: 100%;
+  left: -10%;
+}
+
+.prob2 {
+  position: absolute;
+  width: 100%;
+  left: 90%;
+}
+
+#contentMsgeNotAvailable {
+  width: 100%;
+  padding: 5%;
+}
+#contentMsgeNotAvailable .msgeNotAvailables {
+  text-align: center;
+  color: rgb(202, 200, 200);
+}
+
+#cardForItemNigth {
+  color: rgb(202, 200, 200);
+}
+
+#containerResume {
+  position: relative;
+}
+#containerResume #colorOneContainerResume {
+  position: relative;
+  bottom: -10vh;
+  z-index: 40;
+  width: 100%;
+  height: 37vh;
+  background-color: rgb(255, 0, 0);
+  transform: skewY(-10deg);
+}
+#containerResume #colorTwoContainerResume {
+  z-index: 37;
+  top: 0px;
+  background-color: black;
+  width: 100%;
+  height: 70vh;
+}
+#containerResume #containerTextResume, #containerResume #containerTextResumeNigth {
+  z-index: 41;
+  position: absolute;
+  top: 11vh;
+  padding: 23px;
+  color: rgb(19, 18, 18);
+}
+#containerTextResumeNigth h2 {
+  color: rgb(202, 200, 200);
+}
+#containerTextResumeNigth p {
+  color: rgb(202, 200, 200);
+}
+
+.formCreateAccount, .formCreateAccountNigth {
+  width: 90%;
+  margin: 10px auto;
+  padding: 15% 2% 15% 2%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+@media (min-width: 778px) {
+  .formCreateAccount, .formCreateAccountNigth {
+    padding: 20% 5% 20% 5%;
+  }
+}
+@media (min-width: 1024px) {
+  .formCreateAccount, .formCreateAccountNigth {
+    padding: 10% 2% 5% 2%;
+  }
+}
+.formCreateAccount p, .formCreateAccountNigth p {
+  font-size: 2.1rem;
+  color: rgb(202, 200, 200);
+  padding: 4px 4px 10px 4px;
+}
+.formCreateAccount label, .formCreateAccountNigth label {
+  color: rgb(202, 200, 200);
+  width: 80%;
+  padding: 6px;
+  font-size: 1.2rem;
+}
+@media (min-width: 1024px) {
+  .formCreateAccount label, .formCreateAccountNigth label {
+    width: 35%;
+  }
+}
+.formCreateAccount label .inputsText, .formCreateAccountNigth label .inputsText {
+  width: 100%;
+  color: rgb(10, 10, 10);
+  font-size: 1.2rem;
+  border: 0;
+  outline: none;
+  padding: 4px;
+  background-color: rgb(240, 17, 17);
+  border-radius: 5px;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+.formCreateAccount label .inputCalendar[type=date], .formCreateAccountNigth label .inputCalendar[type=date] {
+  font-size: 1.22rem;
+  border: 0;
+  margin-top: 15px;
+  margin-left: 30%;
+  appearance: none;
+  width: 50%;
+  border-radius: 3px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(240, 17, 17);
+  display: inline-block;
+  visibility: visible;
+}
+.formCreateAccount label .inputCalendar[type=date]:focus, .formCreateAccountNigth label .inputCalendar[type=date]:focus {
+  background-color: rgb(240, 17, 17);
+  border-color: rgb(255, 6, 6);
+  outline: 0;
+}
+.formCreateAccount label .inputCalendar[type=date]::-webkit-calendar-picker-indicator, .formCreateAccountNigth label .inputCalendar[type=date]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+.formCreateAccount .buttonForms, .formCreateAccountNigth .buttonForms {
+  width: 20%;
+  margin: 17px;
+  padding: 0.4rem;
+  border-radius: 15px;
+  border: 0;
+  color: rgb(255, 255, 255);
+  background-color: rgb(240, 17, 17);
+  font-size: 1.2rem;
+}
+
+.buttonInputsAvailableOrNot {
+  border: 0;
+  outline: none;
+  background-color: rgb(240, 17, 17);
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  margin: 27px 1px 17px 1px;
+  width: 100%;
+}
+
+.formCreateAccountNigth label .inputsText {
+  background-color: rgb(0, 0, 0);
+  border-bottom: 1px solid rgb(12, 245, 55);
+  color: rgb(202, 200, 200);
+}
+.formCreateAccountNigth label .inputCalendar[type=date] {
+  background-color: rgb(4, 4, 4);
+  color: white;
+}
+.formCreateAccountNigth label .inputCalendar[type=date]:focus {
+  background-color: rgb(0, 0, 0);
+  border-color: #80bdff;
+  outline: 0;
+}
+.formCreateAccountNigth .buttonForms {
+  padding: 0.7rem;
+  color: rgb(12, 245, 55);
+  background-color: rgb(0, 0, 0);
+  border: none;
+}
+.formCreateAccountNigth .buttonInputsAvailableOrNot {
+  color: rgb(12, 245, 55);
+  background-color: rgb(0, 0, 0);
+}
+
+#previewAddImage {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+}
+#previewAddImage img {
+  width: 30%;
+}
+
+#footerPage, #footerPageNigth {
+  background-color: red;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 4px;
+  padding: 1% 1% 2% 1%;
+}
+#footerPage div, #footerPageNigth div {
+  text-align: center;
+  width: 45%;
+  padding: 8px;
+}
+#footerPage div li, #footerPageNigth div li {
+  list-style: none;
+  color: rgb(10, 10, 10);
+  font-size: 0.85rem;
+}
+@media (min-width: 778px) {
+  #footerPage div li, #footerPageNigth div li {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  #footerPage div li, #footerPageNigth div li {
+    font-size: 1rem;
+  }
+}
+#footerPage div #lastColumInCenter, #footerPageNigth div #lastColumInCenter {
+  width: 90%;
+}
+
+#footerPageNigth {
+  background-color: rgb(0, 0, 0);
+}
+#footerPageNigth div li {
+  color: rgb(202, 200, 200);
+}/*# sourceMappingURL=styles.css.map */

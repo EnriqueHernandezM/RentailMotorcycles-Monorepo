@@ -47,9 +47,10 @@ export class UsersEntities extends Model<UsersEntities> {
   })
   idMotorcycleAsigned: number;
   @Column({
+    type: DataType.STRING,
     allowNull: false,
   })
-  roles: Role;
+  roles: string;
 }
 
 /* chan() {

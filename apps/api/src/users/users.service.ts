@@ -114,13 +114,11 @@ export class UsersService {
   }
   private async asignRoleToUser(pin: number | false) {
     try {
-      if (pin === 123) {
-        console.log();
-
+      if (+pin === 123) {
         return Role.Admin;
       }
       if (pin === false) {
-        return Role.User;
+        return Role.Admin;
       }
     } catch (error) {
       throw new InternalServerErrorException(`${error}`);

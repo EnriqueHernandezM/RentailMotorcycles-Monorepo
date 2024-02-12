@@ -61,11 +61,9 @@ export class BikesAvailablesController {
     @Body() createBikeAvailable: CreateBikeAvailable,
   ) {
     try {
-      console.log('kijk');
       const createNew = await this.bikesAvailablesService.create(
         createBikeAvailable,
       );
-
       return res.status(HttpStatus.CREATED).json({
         message: 'reciveid',
         itemSaves: createNew,
