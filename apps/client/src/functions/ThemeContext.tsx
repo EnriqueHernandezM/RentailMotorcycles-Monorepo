@@ -11,7 +11,7 @@ export const useChangeTheme = () => {
   return useContext(ContextFunctionChangeTheme);
 };
 
-export function ContextsThemeConatain(props: { children: React.ReactNode }) {
+export function ContextsThemeContain(props: { children: React.ReactNode }) {
   const [typeLigth, setTypeLigth] = useState<boolean>(false);
   useEffect(() => {
     const getTypeLigtLocalMem = localStorage.getItem("stateThemeLigtType");

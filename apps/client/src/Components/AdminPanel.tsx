@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useThemeValue } from "../functions/ThemeContext";
 import { availableRoutes, useChangeRout } from "../functions/RoutsContext";
-import {
-  addMotorcycleInventoryApi,
-  deleteMotorcycleInventoryApi,
-} from "../api/bikesApi";
+import { addMotorcycleInventoryApi } from "../api/bikesApi";
 import { AddNewMotorcycle } from "../api/bikesApi";
 import uploadImgToStorage from "../firebase/storage";
-import { Value } from "sass";
 export default function AdminPanel() {
   const typeLigthValue = useThemeValue();
-  const [changeValueImage, setChangeValueImage] = useState(false);
-  const [rrr, setRrr] = useState("");
+  const [valueToPreviewImage, setValueToPreviewImage] = useState("");
   const [valuesFormAddNewMotorcycle, setValuesFormAddNewMotorcycle] =
     useState<AddNewMotorcycle>({
       brand: "",
@@ -36,7 +31,6 @@ export default function AdminPanel() {
       };
     });
   }
-
   function changesFormAddNewMotocycle(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value, type, files } = e.target;
     setValuesFormAddNewMotorcycle((prev) => {
@@ -47,7 +41,7 @@ export default function AdminPanel() {
         newValue = value;
       }
       if (files) {
-        setRrr(URL.createObjectURL(files[0]));
+        setValueToPreviewImage(URL.createObjectURL(files[0]));
       }
       return {
         ...prev,
@@ -55,49 +49,21 @@ export default function AdminPanel() {
       };
     });
   }
-
   async function postFormNewMotorcycles(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const newUrlIMage = await uploadImgToStorage(
       valuesFormAddNewMotorcycle.image
     );
-    /*  setValuesFormAddNewMotorcycle((prev) => {
-      PROBABLEMENTE BORREMOS ESTO
-      return {
-        ...prev,
-        image: newUrlIMage,
-      };
-    }); */
     const { image, ...valuesNotImage } = valuesFormAddNewMotorcycle;
     let v = { image: newUrlIMage, ...valuesNotImage };
     addMotorcycleInventoryApi(v)
       .then((res) => {
-        console.log(res);
         changeRout(availableRoutes.home);
       })
       .catch((error) => {
-        console.log("inEroor");
-        changeRout(availableRoutes.formAdmin);
-        console.log(error);
+        changeRout(availableRoutes.formConnectAcount);
       });
   }
-  /*  if (changeValueImage === true) {
-    console.log("hghujkes por esto");
-
-    addMotorcycleInventoryApi(valuesFormAddNewMotorcycle)
-      .then((res) => {
-        setChangeValueImage(false);
-        console.log(res);
-
-        changeRout(availableRoutes.home);
-      })
-      .catch((error) => {
-        console.log("inEroor");
-        changeRout(availableRoutes.formAdmin);
-        console.log(error);
-      });
-  } */
-
   return (
     <form
       className={
@@ -242,7 +208,7 @@ export default function AdminPanel() {
         <div id="previewAddImage">
           <img
             alt="your img"
-            src={rrr}
+            src={valueToPreviewImage}
             data-toggle="modal"
             data-target="#ModalPreViewImg"
             className="img-responsive"

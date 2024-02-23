@@ -1,3 +1,5 @@
+import { error } from "console";
+
 interface UserCreateAccount {
   name: string;
   email: string;
@@ -18,17 +20,15 @@ async function userCreateAccount(bodyUser: UserCreateAccount) {
       "http://localhost:8082/rentail_motorcycles/api/users/createUser",
       {
         method: "POST",
-        //credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          //Authorization: "Bearer ",
         },
         body: JSON.stringify(bodyUser),
       }
     );
 
     if (!createNewItem.ok) {
-      throw new Error("Err in Api");
+      throw new Error("It's not possible create account");
     }
     const resToApi = await createNewItem.json();
     const catchToken = resToApi.access_token;
@@ -78,12 +78,13 @@ async function viewOneUser(bodyUser: UserCreateAccount) {
       }
     );
     if (!connectUser.ok) {
-      throw new Error("Err in Api");
+      throw new Error("Error in api");
     }
     const resToApi = await connectUser.json();
     return resToApi;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 }
 export { userCreateAccount, userConnectAccount, viewOneUser };

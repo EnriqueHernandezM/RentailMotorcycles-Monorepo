@@ -1,4 +1,3 @@
-//import { use } from "react";
 interface AddNewMotorcycle {
   brand: string;
   model: string;
@@ -27,15 +26,12 @@ async function getAllsItemsApi() {
     }
     const resAllBikesInv = await allBikesInv.json();
     return resAllBikesInv.inventary;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    throw error;
   }
 }
-
 async function addMotorcycleInventoryApi(bodyC: AddNewMotorcycle) {
   try {
-    console.log(bodyC);
-
     const extarctCatchToken = localStorage.getItem("tokenSession");
     const createNewItem = await fetch(
       "http://localhost:8082/rentail_motorcycles/api/postNew",
@@ -49,11 +45,7 @@ async function addMotorcycleInventoryApi(bodyC: AddNewMotorcycle) {
       }
     );
     if (!createNewItem.ok) {
-      throw new Error("in create new itrem");
-    }
-    if (createNewItem.status === 401) {
-      console.log("verifieed this");
-      return { msge: "need credentials" };
+      throw new Error("It's not posible add new item. Need credentials");
     }
     const resToApi = await createNewItem.json();
     return resToApi;
@@ -68,7 +60,6 @@ async function deleteMotorcycleInventoryApi(id: number) {
       `http://localhost:8082/rentail_motorcycles/api/deleteOne/${id}`,
       {
         method: "DELETE",
-        //credentials: "include",
         headers: {
           Authorization: `Bearer ${catchToken}`,
           "Content-Type": "application/json",

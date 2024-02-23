@@ -1,6 +1,10 @@
 import { FormEvent, useState } from "react";
 import { useThemeValue } from "../functions/ThemeContext";
 import { userCreateAccount } from "../api/usersAuthApi";
+import {
+  useChangesValueMesaggeInputUser,
+  useValueMesaggeInputUser,
+} from "../functions/InputsAssistan";
 
 interface InputsCreateAccount {
   name: string;
@@ -15,7 +19,8 @@ interface InputsCreateAccount {
 
 export default function CreateCountForm() {
   const typeLigthValue: boolean = useThemeValue();
-
+  const analyzeInputs = useChangesValueMesaggeInputUser();
+  const messagesToUser = useValueMesaggeInputUser();
   const [valuesFormCreateAccount, setValuesFormCreateAccount] =
     useState<InputsCreateAccount>({
       name: "",
@@ -28,8 +33,55 @@ export default function CreateCountForm() {
       idMotorcycleAsigned: 0,
     });
 
+  /* function analyzeInputs(nameInput: string, valueOfInput: string) {
+    let regexp = /[>.<`;*=]/g;
+    if (nameInput === "email") regexp = /[><`;*=]/g;
+    if (nameInput === "password" && valueOfInput.match(regexp)?.length === 1) {
+      setMessagesToUser((prev) => {
+        return {
+          ...prev,
+          inInput: nameInput,
+          message: "You entered invalid characters",
+        };
+      });
+      return;
+    }
+    if (
+      nameInput === "password" &&
+      valueOfInput.length > 5 &&
+      valueOfInput.match(regexp)?.length === undefined
+    ) {
+      setMessagesToUser((prev) => {
+        return {
+          ...prev,
+          inInput: nameInput,
+          message: "green",
+        };
+      });
+      return;
+    }
+    if (valueOfInput.match(regexp)?.length === 1) {
+      setMessagesToUser((prev) => {
+        return {
+          ...prev,
+          inInput: nameInput,
+          message: "You entered invalid characters",
+        };
+      });
+    }
+    if (valueOfInput.match(regexp)?.length === undefined) {
+      setMessagesToUser((prev) => {
+        return {
+          ...prev,
+          inInput: nameInput,
+          message: "",
+        };
+      });
+    }
+  } */
   function changesFormCreateUser(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
+    analyzeInputs(name, value);
     setValuesFormCreateAccount((prev) => {
       return {
         ...prev,
@@ -39,6 +91,21 @@ export default function CreateCountForm() {
   }
   function envFormCreateNewUser(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const { motorcycleAsigned, idMotorcycleAsigned, ...toAnalized } =
+      valuesFormCreateAccount;
+    let iHaveErrors;
+    Object.entries(toAnalized)?.forEach(([key, value]) => {
+      let regexp = /[>.<`;*=]/g;
+      if (key === "email") regexp = /[><`;*=]/g;
+      if (value.match(regexp)?.length !== undefined) {
+        iHaveErrors = true;
+        analyzeInputs(key, value);
+      }
+    });
+    if (iHaveErrors) {
+      return;
+    }
+
     userCreateAccount(valuesFormCreateAccount)
       .then((res) => {
         console.log(res);
@@ -69,6 +136,10 @@ export default function CreateCountForm() {
           onChange={changesFormCreateUser}
           value={valuesFormCreateAccount.name}
         />
+        <p className="messageInputsToUser">
+          {" "}
+          {messagesToUser.inInput === "name" && messagesToUser.message}
+        </p>
       </label>
       <label>
         Last name
@@ -81,6 +152,9 @@ export default function CreateCountForm() {
           onChange={changesFormCreateUser}
           value={valuesFormCreateAccount.lastName}
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "lastName" && messagesToUser.message}
+        </p>
       </label>
       <label>
         Email
@@ -93,6 +167,9 @@ export default function CreateCountForm() {
           onChange={changesFormCreateUser}
           value={valuesFormCreateAccount.email}
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "email" && messagesToUser.message}
+        </p>
       </label>
       <label>
         Password
@@ -105,6 +182,16 @@ export default function CreateCountForm() {
           onChange={changesFormCreateUser}
           value={valuesFormCreateAccount.password}
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "password" && messagesToUser.message}
+        </p>
+        <div
+          id={
+            messagesToUser.message === "green"
+              ? "indicateSecurePasswordOn"
+              : "indicateSecurePassword"
+          }
+        ></div>
       </label>
       <label>
         Birthdate
@@ -129,8 +216,11 @@ export default function CreateCountForm() {
           onChange={changesFormCreateUser}
           value={valuesFormCreateAccount.city}
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "city" && messagesToUser.message}
+        </p>
       </label>
-      <button className="buttonForms"> Log in </button>
+      <button className="buttonForms"> Create account </button>
     </form>
   );
 }

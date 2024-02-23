@@ -2,12 +2,10 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useThemeValue } from "../functions/ThemeContext";
 import { availableRoutes, useChangeRout } from "../functions/RoutsContext";
 import { userConnectAccount } from "../api/usersAuthApi";
-
 interface InputsConnectAccount {
   email: string;
   password: string;
 }
-
 export default function ConnectCountForm() {
   const typeLigthValue = useThemeValue();
   const changeRout = useChangeRout();
@@ -16,7 +14,6 @@ export default function ConnectCountForm() {
       email: "",
       password: "",
     });
-
   function changesInFormConnectUser(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setValuesFormConectAccount((prev) => {

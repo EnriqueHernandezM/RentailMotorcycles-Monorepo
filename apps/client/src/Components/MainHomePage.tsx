@@ -19,7 +19,7 @@ export default function MainHomePage() {
           setAllInventory(inventory);
         });
       })
-      .catch((err) => console.log(err));
+      .catch((error) => console.log(error));
   }, []);
 
   const carouselImages = (isLeft: boolean, isRigth: boolean) => {

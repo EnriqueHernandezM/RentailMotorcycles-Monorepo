@@ -69,6 +69,19 @@
     background-color: $principalColor;
     font-size: $secondaryFontSize - 0.3;
   }
+  #indicateSecurePassword {
+    width: 9px;
+    height: 9px;
+    margin: 20px 15px 1px 15px;
+    background-color: rgb(27, 26, 26);
+  }
+  #indicateSecurePasswordOn {
+    @extend #indicateSecurePassword;
+    background-color: rgb(23, 192, 23);
+  }
+  .messageInputsToUser {
+    font-size: 95%;
+  }
 }
 //Form new Motorcycle
 .buttonInputsAvailableOrNot {
