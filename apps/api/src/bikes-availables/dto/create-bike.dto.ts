@@ -9,6 +9,7 @@ import {
   Max,
   Min,
   IsUrl,
+  NotContains,
 } from 'class-validator';
 
 import { OptionsStatus } from '../../schemas/enums/optionStatusBike.enum';
@@ -19,12 +20,20 @@ export class CreateBikeAvailable {
   @IsAlpha()
   @MinLength(3)
   @MaxLength(20)
+  @NotContains('`')
+  @NotContains('<')
+  @NotContains(';')
+  @NotContains('*')
   readonly brand: string;
   @IsString()
   @IsNotEmpty()
   @IsAlpha()
   @MinLength(3)
   @MaxLength(20)
+  @NotContains('`')
+  @NotContains('<')
+  @NotContains(';')
+  @NotContains('*')
   readonly model: string;
   @IsNumber()
   @IsNotEmpty()

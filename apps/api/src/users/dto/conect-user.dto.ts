@@ -1,15 +1,10 @@
 import {
   IsNotEmpty,
   IsString,
-  IsNumber,
-  IsIn,
-  IsAlpha,
   MinLength,
   MaxLength,
-  Max,
-  Min,
-  IsUrl,
   IsEmail,
+  NotContains,
 } from 'class-validator';
 
 export class ConectUser {
@@ -20,6 +15,10 @@ export class ConectUser {
   @IsString()
   @IsNotEmpty()
   @MinLength(6)
-  @MaxLength(40)
+  @MaxLength(10)
+  @NotContains('`')
+  @NotContains('<')
+  @NotContains(';')
+  @NotContains('*')
   readonly password: string;
 }

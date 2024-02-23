@@ -2,15 +2,12 @@ import {
   IsNotEmpty,
   IsString,
   IsNumber,
-  IsIn,
   IsAlpha,
   MinLength,
   MaxLength,
-  Max,
-  Min,
-  IsUrl,
   IsEmail,
   IsBoolean,
+  NotContains,
 } from 'class-validator';
 import { Role } from 'src/schemas/enums/role.enum';
 
@@ -34,7 +31,11 @@ export class CreateUser {
   @IsString()
   @IsNotEmpty()
   @MinLength(6)
-  @MaxLength(40)
+  @MaxLength(10)
+  @NotContains('`')
+  @NotContains('<')
+  @NotContains(';')
+  @NotContains('*')
   password: string;
   @IsString()
   @IsNotEmpty()
