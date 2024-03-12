@@ -33,52 +33,6 @@ export default function CreateCountForm() {
       idMotorcycleAsigned: 0,
     });
 
-  /* function analyzeInputs(nameInput: string, valueOfInput: string) {
-    let regexp = /[>.<`;*=]/g;
-    if (nameInput === "email") regexp = /[><`;*=]/g;
-    if (nameInput === "password" && valueOfInput.match(regexp)?.length === 1) {
-      setMessagesToUser((prev) => {
-        return {
-          ...prev,
-          inInput: nameInput,
-          message: "You entered invalid characters",
-        };
-      });
-      return;
-    }
-    if (
-      nameInput === "password" &&
-      valueOfInput.length > 5 &&
-      valueOfInput.match(regexp)?.length === undefined
-    ) {
-      setMessagesToUser((prev) => {
-        return {
-          ...prev,
-          inInput: nameInput,
-          message: "green",
-        };
-      });
-      return;
-    }
-    if (valueOfInput.match(regexp)?.length === 1) {
-      setMessagesToUser((prev) => {
-        return {
-          ...prev,
-          inInput: nameInput,
-          message: "You entered invalid characters",
-        };
-      });
-    }
-    if (valueOfInput.match(regexp)?.length === undefined) {
-      setMessagesToUser((prev) => {
-        return {
-          ...prev,
-          inInput: nameInput,
-          message: "",
-        };
-      });
-    }
-  } */
   function changesFormCreateUser(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     analyzeInputs(name, value);
@@ -137,7 +91,6 @@ export default function CreateCountForm() {
           value={valuesFormCreateAccount.name}
         />
         <p className="messageInputsToUser">
-          {" "}
           {messagesToUser.inInput === "name" && messagesToUser.message}
         </p>
       </label>

@@ -2,6 +2,10 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useThemeValue } from "../functions/ThemeContext";
 import { availableRoutes, useChangeRout } from "../functions/RoutsContext";
 import { userConnectAccount } from "../api/usersAuthApi";
+import {
+  useValueMesaggeInputUser,
+  useChangesValueMesaggeInputUser,
+} from "../functions/InputsAssistan";
 interface InputsConnectAccount {
   email: string;
   password: string;
@@ -9,6 +13,8 @@ interface InputsConnectAccount {
 export default function ConnectCountForm() {
   const typeLigthValue = useThemeValue();
   const changeRout = useChangeRout();
+  const analyzeInputs = useChangesValueMesaggeInputUser();
+  const messagesToUser = useValueMesaggeInputUser();
   const [valuesFormConectAccount, setValuesFormConectAccount] =
     useState<InputsConnectAccount>({
       email: "",
@@ -16,6 +22,7 @@ export default function ConnectCountForm() {
     });
   function changesInFormConnectUser(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
+    analyzeInputs(name, value);
     setValuesFormConectAccount((prev) => {
       return {
         ...prev,
@@ -25,6 +32,18 @@ export default function ConnectCountForm() {
   }
   function envFormConnectUser(e: FormEvent<HTMLElement>) {
     e.preventDefault();
+    let iHaveErrors;
+    Object.entries(valuesFormConectAccount)?.forEach(([key, value]) => {
+      let regexp = /[>.<`;*=]/g;
+      if (key === "email") regexp = /[><`;*=]/g;
+      if (value.match(regexp)?.length !== undefined) {
+        iHaveErrors = true;
+        analyzeInputs(key, value);
+      }
+    });
+    if (iHaveErrors) {
+      return;
+    }
     userConnectAccount(valuesFormConectAccount)
       .then((res) => changeRout(availableRoutes.home))
       .catch((error: any) => changeRout(availableRoutes.formCreateAccount));
@@ -48,6 +67,9 @@ export default function ConnectCountForm() {
           name="email"
           className="inputsText"
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "email" && messagesToUser.message}
+        </p>
       </label>
       <label>
         password

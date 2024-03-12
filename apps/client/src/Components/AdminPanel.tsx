@@ -3,9 +3,16 @@ import { useThemeValue } from "../functions/ThemeContext";
 import { availableRoutes, useChangeRout } from "../functions/RoutsContext";
 import { addMotorcycleInventoryApi } from "../api/bikesApi";
 import { AddNewMotorcycle } from "../api/bikesApi";
+import {
+  useValueMesaggeInputUser,
+  useChangesValueMesaggeInputUser,
+} from "../functions/InputsAssistan";
+
 import uploadImgToStorage from "../firebase/storage";
 export default function AdminPanel() {
   const typeLigthValue = useThemeValue();
+  const analyzeInputs = useChangesValueMesaggeInputUser();
+  const messagesToUser = useValueMesaggeInputUser();
   const [valueToPreviewImage, setValueToPreviewImage] = useState("");
   const [valuesFormAddNewMotorcycle, setValuesFormAddNewMotorcycle] =
     useState<AddNewMotorcycle>({
@@ -89,6 +96,9 @@ export default function AdminPanel() {
             changesFormAddNewMotocycle(e);
           }}
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "brand" && messagesToUser.message}
+        </p>
       </label>
       <label>
         Model
@@ -103,6 +113,9 @@ export default function AdminPanel() {
             changesFormAddNewMotocycle(e);
           }}
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "model" && messagesToUser.message}
+        </p>
       </label>
       <label>
         Displacement
@@ -117,6 +130,9 @@ export default function AdminPanel() {
             changesFormAddNewMotocycle(e);
           }}
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "cc" && messagesToUser.message}
+        </p>
       </label>
       <label>
         Occupants
@@ -131,6 +147,9 @@ export default function AdminPanel() {
             changesFormAddNewMotocycle(e);
           }}
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "occupants" && messagesToUser.message}
+        </p>
       </label>
       <label>
         Autonomy
@@ -145,6 +164,9 @@ export default function AdminPanel() {
             changesFormAddNewMotocycle(e);
           }}
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "autonomy" && messagesToUser.message}
+        </p>
       </label>
       <label>
         Speed
@@ -159,6 +181,9 @@ export default function AdminPanel() {
             changesFormAddNewMotocycle(e);
           }}
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "speed" && messagesToUser.message}
+        </p>
       </label>
       <label>
         Weigth
@@ -176,6 +201,9 @@ export default function AdminPanel() {
             console.log(e);
           }}
         />
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "weigth" && messagesToUser.message}
+        </p>
       </label>
       <label>
         Status
@@ -190,6 +218,9 @@ export default function AdminPanel() {
           <option value="Available">Available</option>
           <option value="Unvailable">Unvailable</option>
         </select>
+        <p className="messageInputsToUser">
+          {messagesToUser.inInput === "status" && messagesToUser.message}
+        </p>
       </label>
       <label>
         Add image
