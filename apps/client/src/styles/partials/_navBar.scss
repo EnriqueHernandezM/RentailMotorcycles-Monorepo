@@ -12,12 +12,12 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-around;
     align-items: center;
     list-style: none;
     li {
-      padding: 2px 20px 2px 6px;
       font-size: 1rem;
+      width: 60%;
+
       @include mobileHorizontalAndTabletVertical {
         font-size: 1.3rem;
       }
@@ -30,20 +30,29 @@
         @include mobileHorizontalAndTabletVertical {
           font-size: 2rem;
         }
+        @include tabletHorixzontalAndDesk {
+          font-size: 1.7rem;
+        }
       }
       #logoNavBarImg {
         position: absolute;
         width: 35px;
         top: 8px;
-        left: 25%;
-        @media (min-width: 530px) {
-          top: 20px;
-          left: 38%;
+        left: 29%;
+        @media (min-width: 400px) {
+          top: 10px;
+          left: 97px;
         }
         @include mobileHorizontalAndTabletVertical {
           width: 44px;
-          position: initial;
           padding-left: 7px;
+          top: 17px;
+          left: 130px;
+        }
+        @include tabletHorixzontalAndDesk {
+          margin-left: 4px;
+          top: 23.5px;
+          margin-left: 155px;
         }
       }
       a {
@@ -53,9 +62,8 @@
     }
   }
   #containerSwitchLigth {
-    position: relative;
     display: flex;
-    padding: 20px 5px 20px 0px;
+    padding: 20px 3px 20px 2px;
     height: 28px;
     align-items: center;
     cursor: pointer;
@@ -63,48 +71,52 @@
       display: none;
     }
     .rail {
-      width: 52px;
-      height: 25px;
+      width: 48px;
+      height: 23px;
       position: relative;
       border-radius: 23px;
       background-color: black;
+
       @include mobileHorizontalAndTabletVertical {
         width: 72px;
         height: 34px;
       }
-      .circle {
-        left: 0px;
-        display: block;
-        border-radius: 50%;
-        position: absolute;
-        top: 22%;
-        transition: 0.4s;
-        transform: translateY(-50%);
-      }
+
       .circle::before {
         content: "🌖";
+        top: 9.5px;
+        left: -3px;
+        font-size: 130%;
+        left: -3px;
+        border-radius: 50%;
         position: absolute;
-        left: -4px;
-        top: -10px;
-        font-size: 24px;
+        transition: 0.4s;
+        transform: translateY(-50%);
+        @media (min-width: 430px) {
+          top: 11px;
+          left: -0.5px;
+        }
         @include mobileHorizontalAndTabletVertical {
-          font-size: 32px;
-          left: -4px;
-          top: -14px;
+          font-size: 33px;
+          left: -5.5px;
+          top: 14.7px;
         }
       }
-
       .circle::after {
         content: "☀️";
         position: absolute;
-        right: -28px;
-        top: -10px;
+        right: -3px;
+        top: -3px;
         display: none;
-        font-size: 24px;
+        font-size: 130%;
+        @media (min-width: 430px) {
+          right: -1px;
+          top: -1px;
+        }
         @include mobileHorizontalAndTabletVertical {
           font-size: 32px;
-          left: 6px;
-          top: -14px;
+          right: -4.5px;
+          top: -6px;
         }
       }
     }

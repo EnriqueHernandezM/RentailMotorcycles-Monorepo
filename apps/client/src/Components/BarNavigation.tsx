@@ -16,12 +16,18 @@ export default function BarNavigation() {
           </a>
           <img id="logoNavBarImg" src={logoNav} alt="Logo Motorcycle" />
         </li>
-        <li onClick={() => changeRout(availableRoutes.formConnectAcount)}>
-          <a href="#"> Log in </a>
+        <li style={{ textAlign: "right" }}>
+          <a
+            onClick={() => changeRout(availableRoutes.formConnectAcount)}
+            href="#"
+          >
+            {" "}
+            Login{" "}
+          </a>
         </li>
-        <li>
+        <li style={{ textAlign: "right" }}>
           <a onClick={() => changeRout(availableRoutes.formAdmin)} href="#">
-            Form Admin
+            Admin
           </a>
         </li>
       </ul>{" "}

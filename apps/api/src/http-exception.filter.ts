@@ -22,8 +22,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
       msge: nameErr,
       err: errRes,
     };
-    console.log('cijqediofcej');
-
     response.status(status).json({
       resOneError,
     });

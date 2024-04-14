@@ -1,5 +1,4 @@
-import hondaCbr from "../images/hondaCbr600rr.png";
-import yamahaTenere from "../images/yamahaTenere.png";
+import imageFond from "../images/imageFondTOBikes.png";
 import ContainerResume from "./ContainerResume";
 import { getAllsItemsApi, addMotorcycleInventoryApi } from "../api/bikesApi";
 import { useEffect, useState, useTransition } from "react";
@@ -48,8 +47,7 @@ export default function MainHomePage() {
   return (
     <main>
       <div className="containerImagesMain">
-        <img className="hondaCbr" src={hondaCbr} alt="honda cbr 600" />
-        <img className="yamahaTenere" src={yamahaTenere} alt="yamaha tenere" />
+        <img src={imageFond} alt="" />
       </div>
       {createCardsItems?.length === 0 ? (
         <div id="contentMsgeNotAvailable">

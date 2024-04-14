@@ -11,23 +11,23 @@ export const dataBaseProviders = [
     provide: 'SEQUELIZE',
     useFactory: async () => {
       const sequelize = new Sequelize({
-        pool: {
+        /* pool: {
           min: 1,
           max: 1,
           acquire: 3000,
           idle: 0,
-        },
+        }, */
         //evict: CURRENT_LAMBDA_FUNCTION_TIMEOUT,
         //idle: 0,
         dialect: 'mysql',
-        host: configService.get<string>('HOST_DB'),
+        //host: configService.get<string>('HOST_DB'),
         port: parseInt(configService.get<string>('PORT_DB')),
         username: 'admin',
-        password: configService.get<string>('PASSWORD_DB'),
+        //password: configService.get<string>('PASSWORD_DB'),
         database: configService.get<string>('NAME_DB'),
-        dialectOptions: {
+        /* dialectOptions: {
           ssl: 'Amazon RDS',
-        },
+        }, */
       });
 
       sequelize.addModels([UsersBikesEntities]);

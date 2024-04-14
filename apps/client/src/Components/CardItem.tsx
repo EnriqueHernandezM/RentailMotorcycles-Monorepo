@@ -23,23 +23,26 @@ export default function CardItem(props: ObjectBick) {
   return (
     <div id={typeLigth === false ? "cardForItem" : "cardForItemNigth"}>
       <img className="photoCard" src={props.image} alt=" image Bike" />
-      <h2>{props.brand}</h2>
-      <h3>{props.model}</h3>
-      <span className="ccTag"> cc {props.cc}</span>
-      <span className="ocupantsTag">👥{props.occupants}</span>
-      <span className="autonomyTag">
-        full tank autonomy {props.autonomy} km
-      </span>
-      <span className="speedTag">top speed {props.speed}k/h</span>
-      <span className="weigthTag">weigth {props.weigth}kg</span>
-      <span className="statatusTag">availability {props.status}</span>
-      <span
-        onClick={() => {
-          deleteMotorcycle(props.id);
-        }}
-      >
-        eliminar
-      </span>
+      <div id="sectionOfInfCard">
+        <h2>{props.brand}</h2>
+        <h3>{props.model}</h3>
+        <span className="ccTag"> cc {props.cc}</span>
+        <span className="ocupantsTag">👥{props.occupants}</span>
+        <span className="autonomyTag">
+          full tank autonomy {props.autonomy} km
+        </span>
+        <span className="speedTag">top speed {props.speed}k/h</span>
+        <span className="weigthTag">weigth {props.weigth}kg</span>
+        <span className="statusTag">availability {props.status}</span>
+        {/* <span
+          id="deleteButtonItem"
+          onClick={() => {
+            deleteMotorcycle(props.id);
+          }}
+        >
+          eliminar
+        </span> */}
+      </div>
     </div>
   );
 }

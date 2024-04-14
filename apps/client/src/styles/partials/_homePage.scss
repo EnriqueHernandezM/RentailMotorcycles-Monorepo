@@ -1,46 +1,29 @@
 .containerImagesMain {
-  box-shadow: 0px 5px 25px 1px rgb(112, 112, 111);
-  // background-clor: $secondaryColor;
-  filter: opacity(0.95);
-  display: flex;
-  position: relative;
-  align-items: center;
-  padding: 2px;
-  margin: 20px 1px 1px 1px;
-  background: url("https://www.fundacionmapfre.org/media/educacion-divulgacion/prevencion/accidentes-mayores/caminar-carretera-1194x585-1.jpg");
-  background-size: cover;
-  background-position-y: -233px;
+  padding: 10px 0px 10px 0px;
+
+  img {
+    box-shadow: 0px 5px 25px 1px rgb(112, 112, 111);
+    margin-top: 10px;
+    filter: opacity(0.99);
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    @include mobileHorizontalAndTabletVertical {
+      height: 230px;
+      object-fit: inherit;
+    }
+    @include tabletHorixzontalAndDesk {
+      object-fit: inherit;
+      height: 250px;
+    }
+    @media (min-width: 1225px) {
+      margin-top: 7px;
+      height: 235px;
+    }
+  }
+
   @include mobileHorizontalAndTabletVertical {
-    background-position-y: -150px;
   }
   @include tabletHorixzontalAndDesk {
-    background-position-y: -330px;
-  }
-  .hondaCbr {
-    position: relative;
-    left: 15px;
-    width: 40%;
-    @include mobileHorizontalAndTabletVertical {
-      width: 35%;
-    }
-    @include tabletHorixzontalAndDesk {
-      width: 31%;
-      height: 20rem;
-      left: 92px;
-    }
-  }
-  .yamahaTenere {
-    position: absolute;
-    right: 0px;
-    width: 55%;
-    bottom: -13px;
-    @include mobileHorizontalAndTabletVertical {
-      width: 50%;
-      bottom: -30px;
-    }
-    @include tabletHorixzontalAndDesk {
-      bottom: -60px;
-      width: 43%;
-    }
   }
 }

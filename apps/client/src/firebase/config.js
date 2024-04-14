@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-  apiKey: "AIzaSyDlmuBKuqv-H_84AbHyAjmq9icV87Cqin8",
-  authDomain: "rentailmotorcycles.firebaseapp.com",
-  projectId: "rentailmotorcycles",
-  storageBucket: "rentailmotorcycles.appspot.com",
-  messagingSenderId: "661145183416",
-  appId: "1:661145183416:web:fbeb1b2dd1ac7904b5804d",
+  apiKey: `${process.env.REACT_APP_api_key}`,
+  authDomain: `${process.env.REACT_APP_auth_domain}`,
+  projectId: `${process.env.REA_project_id}`,
+  storageBucket: `${process.env.REACT_APP_storage_bucket}`,
+  messagingSenderId: `${process.env.REACT_APP_messagin_sender_id}`,
+  appId: `${process.env.REACT_APP_app_id}`,
 };
 
 // Initialize Firebase

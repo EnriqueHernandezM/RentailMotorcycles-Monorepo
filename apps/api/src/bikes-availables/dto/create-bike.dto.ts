@@ -28,7 +28,7 @@ export class CreateBikeAvailable {
   @IsString()
   @IsNotEmpty()
   @IsAlpha()
-  @MinLength(3)
+  @MinLength(1)
   @MaxLength(20)
   @NotContains('`')
   @NotContains('<')

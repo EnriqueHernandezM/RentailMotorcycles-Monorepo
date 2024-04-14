@@ -12,6 +12,8 @@ import { JwtService } from '@nestjs/jwt';
 import { ConectUser } from './dto/conect-user.dto';
 import { Role } from 'src/schemas/enums/role.enum';
 import * as bcrypt from 'bcrypt';
+import { ConfigService } from '@nestjs/config';
+const configService = new ConfigService();
 @Injectable()
 export class UsersService {
   constructor(
@@ -114,11 +116,11 @@ export class UsersService {
   }
   private async asignRoleToUser(pin: number | false) {
     try {
-      if (+pin === 123) {
+      if (+pin === +configService.get<string>('PIN_ADMIN')) {
         return Role.Admin;
       }
       if (pin === false) {
-        return Role.Admin;
+        return Role.User;
       }
     } catch (error) {
       throw new InternalServerErrorException(`${error}`);

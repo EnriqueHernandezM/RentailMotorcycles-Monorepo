@@ -3,6 +3,9 @@
 > react-scripts build
 
 Creating an optimized production build...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
 declaring it in its dependencies. This is currently working because
@@ -15,22 +18,48 @@ ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
 your devDependencies to work around this error. This will make this message
 go away.[0m
   
-Compiled successfully.
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Compiled with warnings.
+
+[eslint] 
+src\Components\AdminPanel.tsx
+  Line 14:9:  'analyzeInputs' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+src\Components\BarNavigation.tsx
+  Line 14:11:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+  Line 20:11:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+  Line 29:11:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+
+src\Components\CardItem.tsx
+  Line 18:18:  'deleteMotorcycle' is defined but never used                                                                                                                                                     @typescript-eslint/no-unused-vars
+  Line 25:7:   Redundant alt attribute. Screen-readers already announce `img` tags as an image. You don’t need to use the words `image`, `photo,` or `picture` (or any specified custom words) in the alt prop  jsx-a11y/img-redundant-alt
+
+src\Components\MainHomePage.tsx
+  Line 3:27:   'addMotorcycleInventoryApi' is defined but never used  @typescript-eslint/no-unused-vars
+  Line 8:10:   'isPending' is assigned a value but never used         @typescript-eslint/no-unused-vars
+  Line 12:23:  'setWidthWindow' is assigned a value but never used    @typescript-eslint/no-unused-vars
+
+src\api\usersAuthApi.ts
+  Line 1:10:  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+src\functions\ThemeContext.tsx
+  Line 1:10:  'log' is defined but never used  @typescript-eslint/no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
 
 File sizes after gzip:
 
-  46.61 kB  build\static\js\main.2d09a1f1.js
-  1.78 kB   build\static\js\415.2786b592.chunk.js
-  541 B     build\static\css\main.073c9b0a.css
+  71.63 kB (-149 B)  build\static\js\main.08886086.js
+  2.52 kB            build\static\css\main.d982ec66.css
+  1.78 kB            build\static\js\415.2786b592.chunk.js
 
-The project was built assuming it is hosted at /.
+The project was built assuming it is hosted at /EnriqueHernandezM/RentailMotorcycles-Monorepo/.
 You can control this with the homepage field in your package.json.
 
 The build folder is ready to be deployed.
-You may serve it with a static server:
-
-  npm install -g serve
-  serve -s build
 
 Find out more about deployment here:
 

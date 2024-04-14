@@ -6,19 +6,17 @@ export default function FooterPage() {
   return (
     <footer id={themeValue === false ? "footerPage" : "footerPageNigth"}>
       <div>
-        <li>Terminos y condicions</li>
-        <li>privacidad</li>
-        <li>Acerca de nosotros</li>
+        <li>Terms and conditions</li>
+        <li>Privacy</li>
+        <li>About us</li>
       </div>
       <div>
         <li>Mexico</li>
         <li>{`${actualDate.getFullYear()}`}</li>
-        <li>Derechos reservados</li>
+        <li>All rights reserved</li>
       </div>
       <div id="lastColumInCenter">
         <li>Development by Enrique Hernandez Montiel</li>
-        <li></li>
-        <li></li>
       </div>
     </footer>
   );

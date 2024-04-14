@@ -83,6 +83,7 @@ export default function AdminPanel() {
         postFormNewMotorcycles(e);
       }}
     >
+      <p> Add new motorcycle </p>
       <label>
         Brand
         <input

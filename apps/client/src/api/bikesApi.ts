@@ -21,10 +21,13 @@ async function getAllsItemsApi() {
         },
       }
     );
+
     if (!allBikesInv.ok) {
       throw new Error("Err in Api");
     }
+
     const resAllBikesInv = await allBikesInv.json();
+
     return resAllBikesInv.inventary;
   } catch (error) {
     throw error;

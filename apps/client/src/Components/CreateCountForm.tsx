@@ -131,13 +131,14 @@ export default function CreateCountForm() {
           className="inputsText"
           type="password"
           name="password"
+          maxLength={10}
           required={true}
           onChange={changesFormCreateUser}
           value={valuesFormCreateAccount.password}
         />
-        <p className="messageInputsToUser">
+        {/*  <p className="messageInputsToUser">
           {messagesToUser.inInput === "password" && messagesToUser.message}
-        </p>
+        </p> */}
         <div
           id={
             messagesToUser.message === "green"

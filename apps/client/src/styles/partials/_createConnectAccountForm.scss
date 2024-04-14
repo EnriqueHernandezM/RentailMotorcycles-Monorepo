@@ -1,7 +1,7 @@
 .formCreateAccount {
   width: 90%;
   margin: 10px auto;
-  padding: 15% 2% 15% 2%;
+  padding: 10% 2% 15% 2%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -15,13 +15,13 @@
   }
   p {
     font-size: $titlePagesFontSize;
-    color: $principalFontColorNigth;
+    color: $principalFontColor;
     padding: 4px 4px 10px 4px;
   }
   label {
-    color: $principalFontColorNigth;
+    color: $principalFontColor;
     width: 80%;
-    padding: 6px;
+    padding: 25px 6px 6px 6px;
     font-size: 1.2rem;
     @include tabletHorixzontalAndDesk {
       width: 35%;
@@ -40,10 +40,10 @@
     .inputCalendar[type="date"] {
       font-size: 1.22rem;
       border: 0;
-      margin-top: 15px;
-      margin-left: 30%;
+      margin: 25px 1px 10px 1px;
+      margin-left: 29%;
       appearance: none;
-      width: 50%;
+      width: 80%;
       border-radius: 3px;
       color: $detailsColor;
       background-color: $principalColor;
@@ -60,20 +60,24 @@
     }
   }
   .buttonForms {
-    width: 20%;
-    margin: 17px;
+    width: 50%;
+    margin: 19px;
     padding: 0.4rem;
     border-radius: 15px;
     border: 0;
     color: $detailsColor;
     background-color: $principalColor;
-    font-size: $secondaryFontSize - 0.3;
+    font-size: $secondaryFontSize;
   }
   #indicateSecurePassword {
-    width: 9px;
-    height: 9px;
+    width: 12px;
+    height: 12px;
+    border-radius: 7px;
     margin: 20px 15px 1px 15px;
     background-color: rgb(27, 26, 26);
+    position: relative;
+    right: -85%;
+    top: -42px;
   }
   #indicateSecurePasswordOn {
     @extend #indicateSecurePassword;

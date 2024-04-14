@@ -7,8 +7,6 @@ import { join } from 'path';
 import { BikesAvailablesModule } from './bikes-availables/bikes-availables.module';
 import { UsersModule } from './users/users.module';
 import {} from './schemas/enties/usersBikes.entity';
-import { APP_GUARD } from '@nestjs/core';
-import { RolesGuard } from './users/admins.guard';
 
 @Module({
   imports: [
